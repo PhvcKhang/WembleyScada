@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "rNUKR/S9BzMTINBIkdIxJ4c33GZVuTacGbx8T2rlLks=",
+  "Source": "WembleyScada.Api",
+  "BasePath": "_content/WembleyScada.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
