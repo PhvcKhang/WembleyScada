@@ -15,3 +15,4 @@ C:\Users\LEGION\Documents\Visual Studio 2022\Projects\Wembley_Project\WembleySca
 C:\Users\LEGION\Documents\Visual Studio 2022\Projects\Wembley_Project\WembleyScada\WembleyScada.Infrastructure\obj\Debug\net6.0\WembleyScada.Infrastructure.pdb
 C:\Users\LEGION\Documents\Visual Studio 2022\Projects\Wembley_Project\WembleyScada\WembleyScada.Infrastructure\obj\Debug\net6.0\WembleyScada.Infrastructure.genruntimeconfig.cache
 C:\Users\LEGION\Documents\Visual Studio 2022\Projects\Wembley_Project\WembleyScada\WembleyScada.Infrastructure\obj\Debug\net6.0\ref\WembleyScada.Infrastructure.dll
+C:\Users\LEGION\Documents\Visual Studio 2022\Projects\Wembley_Project\WembleyScada\WembleyScada.Infrastructure\obj\Debug\net6.0\WembleyScada.Infrastructure.sourcelink.json

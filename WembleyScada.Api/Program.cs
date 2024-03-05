@@ -1,4 +1,5 @@
 
+using WembleyScada.Domain.SeedWork;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,8 +27,18 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("Wembly.Api"));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("WembleyScada.Api"));
     options.EnableSensitiveDataLogging();
+});
+
+builder.Services.AddAutoMapper(typeof(ModelToViewModelProfile));
+builder.Services.AddAutoMapper(typeof(ViewModelToModelProfile));
+builder.Services.AddMediatR(cfg =>
+{
+    cfg.RegisterServicesFromAssemblyContaining<ModelToViewModelProfile>();
+    cfg.RegisterServicesFromAssemblyContaining<ViewModelToModelProfile>();
+    cfg.RegisterServicesFromAssemblyContaining<ApplicationDbContext>();
+    cfg.RegisterServicesFromAssemblyContaining<Entity>();
 });
 
 var app = builder.Build();

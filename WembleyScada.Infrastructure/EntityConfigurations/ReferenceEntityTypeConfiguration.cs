@@ -15,6 +15,9 @@ namespace WembleyScada.Infrastructure.EntityConfigurations
 
             builder.HasMany(r => r.Lots)
                 .WithOne();
+
+            builder.HasMany(r => r.UsableLines)
+                .WithMany();
         }
     }
 }

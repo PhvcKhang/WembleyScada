@@ -10,3 +10,4 @@ C:\Users\LEGION\Documents\Visual Studio 2022\Projects\Wembley_Project\WembleySca
 C:\Users\LEGION\Documents\Visual Studio 2022\Projects\Wembley_Project\WembleyScada\WembleyScada.Domain\obj\Debug\net6.0\refint\WembleyScada.Domain.dll
 C:\Users\LEGION\Documents\Visual Studio 2022\Projects\Wembley_Project\WembleyScada\WembleyScada.Domain\obj\Debug\net6.0\WembleyScada.Domain.pdb
 C:\Users\LEGION\Documents\Visual Studio 2022\Projects\Wembley_Project\WembleyScada\WembleyScada.Domain\obj\Debug\net6.0\ref\WembleyScada.Domain.dll
+C:\Users\LEGION\Documents\Visual Studio 2022\Projects\Wembley_Project\WembleyScada\WembleyScada.Domain\obj\Debug\net6.0\WembleyScada.Domain.sourcelink.json

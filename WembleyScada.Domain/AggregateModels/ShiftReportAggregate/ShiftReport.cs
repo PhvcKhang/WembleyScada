@@ -10,7 +10,7 @@
         public TimeSpan ElapsedTime {  get; private set; }
         public string StationId { get; private set; }
         public Station Station { get; private set; }
-        public List<Shot> Shots {  get; private set; }
+        public List<Shot> Shots {  get; set; }
 
         public double A;
         public double P;

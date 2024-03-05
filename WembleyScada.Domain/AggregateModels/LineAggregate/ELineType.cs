@@ -2,7 +2,7 @@
 {
     public enum ELineType
     {
-        ButtonLocking,
-        RegularBloodTube
+        HerapinCap = 0,
+        PlasticInjection =1
     }
 }
