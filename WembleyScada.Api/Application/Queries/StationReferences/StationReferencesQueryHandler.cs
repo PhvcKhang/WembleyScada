@@ -29,8 +29,8 @@ public class StationReferencesQueryHandler : IRequestHandler<StationReferencesQu
             queryable = queryable.Where(x => x.StationId == request.StationId);
         }
 
-        var deviceReferences = await queryable.ToListAsync();
-        var viewModels = _mapper.Map<IEnumerable<StationReferenceViewModel>>(deviceReferences);
+        var stationReferences = await queryable.ToListAsync();
+        var viewModels = _mapper.Map<IEnumerable<StationReferenceViewModel>>(stationReferences);
         
         return viewModels;
     }

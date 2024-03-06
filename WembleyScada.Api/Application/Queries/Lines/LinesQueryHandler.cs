@@ -13,7 +13,9 @@ public class LinesQueryHandler : IRequestHandler<LinesQuery, IEnumerable<LineVie
 
     public async Task<IEnumerable<LineViewModel>> Handle(LinesQuery request, CancellationToken cancellationToken)
     {
-        var queryable = _context.Lines.AsNoTracking();
+        var queryable = _context.Lines
+            .Include(x => x.Stations)
+            .AsNoTracking();
 
         if (request.LineType is not null)
         {

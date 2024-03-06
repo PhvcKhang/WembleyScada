@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "ON4Ua/HAwphHnBy1ImgfI2hK3BJoeViZinPBuwUPviE=",
+  "Source": "WembleyScada.Api",
+  "BasePath": "_content/WembleyScada.Api",
+  "Mode": "Default",
+  "ManifestType": "Publish",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

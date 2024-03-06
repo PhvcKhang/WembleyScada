@@ -1,0 +1,13 @@
+C:\Users\LEGION\Documents\Visual Studio 2022\Projects\Wembley_Project\WembleyScada\WembleyScada.Domain\bin\Release\net6.0\WembleyScada.Domain.deps.json
+C:\Users\LEGION\Documents\Visual Studio 2022\Projects\Wembley_Project\WembleyScada\WembleyScada.Domain\bin\Release\net6.0\WembleyScada.Domain.dll
+C:\Users\LEGION\Documents\Visual Studio 2022\Projects\Wembley_Project\WembleyScada\WembleyScada.Domain\bin\Release\net6.0\WembleyScada.Domain.pdb
+C:\Users\LEGION\Documents\Visual Studio 2022\Projects\Wembley_Project\WembleyScada\WembleyScada.Domain\obj\Release\net6.0\WembleyScada.Domain.csproj.AssemblyReference.cache
+C:\Users\LEGION\Documents\Visual Studio 2022\Projects\Wembley_Project\WembleyScada\WembleyScada.Domain\obj\Release\net6.0\WembleyScada.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\LEGION\Documents\Visual Studio 2022\Projects\Wembley_Project\WembleyScada\WembleyScada.Domain\obj\Release\net6.0\WembleyScada.Domain.AssemblyInfoInputs.cache
+C:\Users\LEGION\Documents\Visual Studio 2022\Projects\Wembley_Project\WembleyScada\WembleyScada.Domain\obj\Release\net6.0\WembleyScada.Domain.AssemblyInfo.cs
+C:\Users\LEGION\Documents\Visual Studio 2022\Projects\Wembley_Project\WembleyScada\WembleyScada.Domain\obj\Release\net6.0\WembleyScada.Domain.csproj.CoreCompileInputs.cache
+C:\Users\LEGION\Documents\Visual Studio 2022\Projects\Wembley_Project\WembleyScada\WembleyScada.Domain\obj\Release\net6.0\WembleyScada.Domain.sourcelink.json
+C:\Users\LEGION\Documents\Visual Studio 2022\Projects\Wembley_Project\WembleyScada\WembleyScada.Domain\obj\Release\net6.0\WembleyScada.Domain.dll
+C:\Users\LEGION\Documents\Visual Studio 2022\Projects\Wembley_Project\WembleyScada\WembleyScada.Domain\obj\Release\net6.0\refint\WembleyScada.Domain.dll
+C:\Users\LEGION\Documents\Visual Studio 2022\Projects\Wembley_Project\WembleyScada\WembleyScada.Domain\obj\Release\net6.0\WembleyScada.Domain.pdb
+C:\Users\LEGION\Documents\Visual Studio 2022\Projects\Wembley_Project\WembleyScada\WembleyScada.Domain\obj\Release\net6.0\ref\WembleyScada.Domain.dll

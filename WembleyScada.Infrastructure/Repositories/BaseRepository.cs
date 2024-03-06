@@ -7,7 +7,7 @@ public class BaseRepository
     {
         get
         {
-            return (IUnitOfWork)_context;
+            return _context;
         }
     }
     public BaseRepository(ApplicationDbContext context)

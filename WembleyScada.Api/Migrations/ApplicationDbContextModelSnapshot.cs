@@ -37,6 +37,21 @@ namespace WembleyScada.Api.Migrations
                     b.ToTable("LineProduct");
                 });
 
+            modelBuilder.Entity("LineReference", b =>
+                {
+                    b.Property<string>("ReferenceId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("UsableLinesLineId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("ReferenceId", "UsableLinesLineId");
+
+                    b.HasIndex("UsableLinesLineId");
+
+                    b.ToTable("LineReference");
+                });
+
             modelBuilder.Entity("ProductStation", b =>
                 {
                     b.Property<string>("ProductId")
@@ -159,12 +174,7 @@ namespace WembleyScada.Api.Migrations
                     b.Property<int>("LineType")
                         .HasColumnType("int");
 
-                    b.Property<string>("ReferenceId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("LineId");
-
-                    b.HasIndex("ReferenceId");
 
                     b.ToTable("Lines");
                 });
@@ -392,6 +402,21 @@ namespace WembleyScada.Api.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("LineReference", b =>
+                {
+                    b.HasOne("WembleyScada.Domain.AggregateModels.ReferenceAggregate.Reference", null)
+                        .WithMany()
+                        .HasForeignKey("ReferenceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WembleyScada.Domain.AggregateModels.LineAggregate.Line", null)
+                        .WithMany()
+                        .HasForeignKey("UsableLinesLineId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("ProductStation", b =>
                 {
                     b.HasOne("WembleyScada.Domain.AggregateModels.ProductAggregate.Product", null)
@@ -446,13 +471,6 @@ namespace WembleyScada.Api.Migrations
                         .IsRequired();
 
                     b.Navigation("ErrorInformation");
-                });
-
-            modelBuilder.Entity("WembleyScada.Domain.AggregateModels.LineAggregate.Line", b =>
-                {
-                    b.HasOne("WembleyScada.Domain.AggregateModels.ReferenceAggregate.Reference", null)
-                        .WithMany("UsableLines")
-                        .HasForeignKey("ReferenceId");
                 });
 
             modelBuilder.Entity("WembleyScada.Domain.AggregateModels.MachineStatusAggregate.MachineStatus", b =>
@@ -603,8 +621,6 @@ namespace WembleyScada.Api.Migrations
             modelBuilder.Entity("WembleyScada.Domain.AggregateModels.ReferenceAggregate.Reference", b =>
                 {
                     b.Navigation("Lots");
-
-                    b.Navigation("UsableLines");
                 });
 
             modelBuilder.Entity("WembleyScada.Domain.AggregateModels.StationAggregate.Station", b =>

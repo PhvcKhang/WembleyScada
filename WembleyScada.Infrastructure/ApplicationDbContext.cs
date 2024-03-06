@@ -1,7 +1,13 @@
-﻿namespace WembleyScada.Infrastructure;
+﻿
+using Microsoft.EntityFrameworkCore.Storage;
 
-public class ApplicationDbContext : DbContext
+namespace WembleyScada.Infrastructure;
+
+public class ApplicationDbContext : DbContext, IUnitOfWork
 {
+    private IDbContextTransaction? _currentTransaction;
+    private readonly IMediator _mediator;
+
     public DbSet<Line> Lines { get; set; }
     public DbSet<Station> Stations { get; set; }
     public DbSet<ShiftReport> ShiftReports { get; set; }
@@ -17,6 +23,10 @@ public class ApplicationDbContext : DbContext
 #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
     {
     }
+
+    public IDbContextTransaction? GetCurrentTransaction() => _currentTransaction;
+    public bool HasActiveTransaction => _currentTransaction != null;
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfiguration(new LineEntityTypeConfiguration());
@@ -31,5 +41,13 @@ public class ApplicationDbContext : DbContext
         modelBuilder.ApplyConfiguration(new MachineStatusEntityTypeConfiguration());
         modelBuilder.ApplyConfiguration(new ErrorInformationEntityTypeConfiguration());
         modelBuilder.ApplyConfiguration(new ErrorStatusEntityTypeConfiguration());
+    }
+
+    public async Task<bool> SaveEntitiesAsync(CancellationToken cancellationToken = default)
+    {
+        await _mediator.DispatchDomainEventsAsync(this);
+        await base.SaveChangesAsync(cancellationToken);
+
+        return true;
     }
 }
