@@ -1,8 +1,7 @@
-﻿namespace WembleyScada.Api.Application.Queries.References.Parameters
+﻿namespace WembleyScada.Api.Application.Queries.References.Parameters;
+
+public class ParametersQuery : IRequest<IEnumerable<ParameterViewModel>>
 {
-    public class ParametersQuery : IRequest<IEnumerable<ParameterViewModel>>
-    {
-        public string? ReferenceId { get; }
-        public ELineType? LineType { get; }
-    }
+    public string? ReferenceId { get; }
+    public ELineType? LineType { get; }
 }

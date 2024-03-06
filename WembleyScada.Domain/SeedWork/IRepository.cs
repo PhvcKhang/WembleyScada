@@ -1,7 +1,6 @@
-﻿namespace WembleyScada.Domain.SeedWork
+﻿namespace WembleyScada.Domain.SeedWork;
+
+public interface IRepository<T> where T : IAggregateRoot
 {
-    public interface IRepository<T> where T : IAggregateRoot
-    {
-        IUnitOfWork UnitOfWork { get; }
-    }
+    IUnitOfWork UnitOfWork { get; }
 }

@@ -10,17 +10,24 @@
             _mediator = mediator;
         }
 
-        protected async Task<IActionResult> CommandAsync<T>(IRequest<T> request)
+        protected async Task<IActionResult> SendCommand<T>(IRequest<T> request)
         {
             try
             {
                 var response = await _mediator.Send(request);
                 return Ok(response);
             }
+            catch (ResourceNotFoundException ex)
+            {
+                var errorMessage = new ErrorMessage(ex);
+                return NotFound(errorMessage);
+            }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                var errorMessage = new ErrorMessage(ex);
+                return BadRequest(errorMessage);
             }
+
         }
     }
 }

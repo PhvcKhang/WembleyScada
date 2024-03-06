@@ -1,23 +1,22 @@
 ﻿
-namespace WembleyScada.Infrastructure.EntityConfigurations
+namespace WembleyScada.Infrastructure.EntityConfigurations;
+
+public class ReferenceEntityTypeConfiguration : IEntityTypeConfiguration<Reference>
 {
-    public class ReferenceEntityTypeConfiguration : IEntityTypeConfiguration<Reference>
+    public void Configure(EntityTypeBuilder<Reference> builder)
     {
-        public void Configure(EntityTypeBuilder<Reference> builder)
-        {
-            builder.HasKey(r => r.ReferenceId);
-            builder.Property(r => r.ReferenceId)
-                .IsRequired()
-                .ValueGeneratedOnAdd();
+        builder.HasKey(r => r.ReferenceId);
+        builder.Property(r => r.ReferenceId)
+            .IsRequired()
+            .ValueGeneratedOnAdd();
 
-            builder.HasIndex(r => r.ReferenceName)
-                .IsUnique();
+        builder.HasIndex(r => r.ReferenceName)
+            .IsUnique();
 
-            builder.HasMany(r => r.Lots)
-                .WithOne();
+        builder.HasMany(r => r.Lots)
+            .WithOne();
 
-            builder.HasMany(r => r.UsableLines)
-                .WithMany();
-        }
+        builder.HasMany(r => r.UsableLines)
+            .WithMany();
     }
 }

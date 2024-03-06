@@ -1,6 +1,4 @@
 
-using WembleyScada.Domain.SeedWork;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -41,7 +39,14 @@ builder.Services.AddMediatR(cfg =>
     cfg.RegisterServicesFromAssemblyContaining<Entity>();
 });
 
+builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+builder.Services.AddScoped<IStationRepository, StationRepository>();
+builder.Services.AddScoped<IStationReferenceRepository, StationReferenceRepository>();
+builder.Services.AddScoped<IReferenceRepository, ReferenceRepository>();
+
 var app = builder.Build();
+
+app.UseCors("AllowAll");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

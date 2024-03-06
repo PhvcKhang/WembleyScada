@@ -1,7 +1,6 @@
-﻿namespace WembleyScada.Api.Application.Queries.Stations
-{
-    public class StationsQuery : IRequest<IEnumerable<StationViewModel>>
-    { 
-        public ELineType? LineType { get; }
-    }
+﻿namespace WembleyScada.Api.Application.Queries.Stations;
+
+public class StationsQuery : IRequest<IEnumerable<StationViewModel>>
+{ 
+    public ELineType? LineType { get; }
 }

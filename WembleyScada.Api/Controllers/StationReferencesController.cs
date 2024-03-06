@@ -9,9 +9,17 @@
         }
 
         [HttpGet]
-        public async Task<IEnumerable<StationReferenceViewModel>> GetDeviceReferences([FromQuery] StationReferencesQuery query)
+        public async Task<IEnumerable<StationReferenceViewModel>> GetStationReferences([FromQuery] StationReferencesQuery query)
         {
             return await _mediator.Send(query);
+        }
+
+        [HttpPut]
+        [Route("{stationId}/{referenceId}")]
+        public async Task<IActionResult> UpdateMFCs([FromRoute] string stationId, [FromRoute] string referenceId, [FromBody] List<UpdateMFCViewModel> mFCs)
+        {
+            var command = new UpdateStationReferenceCommand(referenceId, stationId, mFCs);
+            return await SendCommand(command);
         }
     }
 }

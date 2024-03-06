@@ -1,36 +1,30 @@
 ﻿
+namespace WembleyScada.Api.Application.Queries.Stations;
 
-
-using WembleyScada.Domain.AggregateModels.LineAggregate;
-using WembleyScada.Domain.AggregateModels.StationAggregate;
-
-namespace WembleyScada.Api.Application.Queries.Stations
+public class StationsQueryHandler : IRequestHandler<StationsQuery, IEnumerable<StationViewModel>>
 {
-    public class StationsQueryHandler : IRequestHandler<StationsQuery, IEnumerable<StationViewModel>>
+    private readonly ApplicationDbContext _context;
+    private readonly IMapper _mapper;
+
+    public StationsQueryHandler(ApplicationDbContext context, IMapper mapper)
     {
-        private readonly ApplicationDbContext _context;
-        private readonly IMapper _mapper;
+        _context = context;
+        _mapper = mapper;
+    }
 
-        public StationsQueryHandler(ApplicationDbContext context, IMapper mapper)
+    public async Task<IEnumerable<StationViewModel>> Handle(StationsQuery request, CancellationToken cancellationToken)
+    {
+        var queryable = _context.Stations.AsNoTracking();
+
+        if(request.LineType is not null)
         {
-            _context = context;
-            _mapper = mapper;
+            queryable = queryable
+                .Where(x => x.Line.LineType == request.LineType);
         }
 
-        public async Task<IEnumerable<StationViewModel>> Handle(StationsQuery request, CancellationToken cancellationToken)
-        {
-            var queryable = _context.Stations.AsNoTracking();
+        var stations = await queryable.ToListAsync();
+        var viewModels = _mapper.Map<IEnumerable<StationViewModel>>(stations);
 
-            if(request.LineType is not null)
-            {
-                queryable = queryable
-                    .Where(x => x.Line.LineType == request.LineType);
-            }
-
-            var stations = await queryable.ToListAsync();
-            var viewModels = _mapper.Map<IEnumerable<StationViewModel>>(stations);
-
-            return viewModels;
-        }
+        return viewModels;
     }
 }

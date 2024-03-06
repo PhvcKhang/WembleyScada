@@ -1,8 +1,7 @@
-﻿namespace WembleyScada.Domain.AggregateModels.EmployeeAggregate
+﻿namespace WembleyScada.Domain.AggregateModels.EmployeeAggregate;
+
+public enum EWorkStatus
 {
-    public enum EWorkStatus
-    {
-        Working,
-        Completed
-    }
+    Working,
+    Completed
 }

@@ -1,8 +1,7 @@
-﻿namespace WembleyScada.Domain.AggregateModels.ReferenceAggregate
+﻿namespace WembleyScada.Domain.AggregateModels.ReferenceAggregate;
+
+public enum ELotStatus
 {
-    public enum ELotStatus
-    {
-        Working,
-        Completed
-    }
+    Working,
+    Completed
 }

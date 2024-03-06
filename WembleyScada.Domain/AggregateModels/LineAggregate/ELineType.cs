@@ -1,8 +1,7 @@
-﻿namespace WembleyScada.Domain.AggregateModels.LineAggregate
+﻿namespace WembleyScada.Domain.AggregateModels.LineAggregate;
+
+public enum ELineType
 {
-    public enum ELineType
-    {
-        HerapinCap = 0,
-        PlasticInjection =1
-    }
+    HerapinCap = 0,
+    PlasticInjection =1
 }

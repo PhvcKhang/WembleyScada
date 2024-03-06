@@ -1,7 +1,6 @@
-﻿namespace WembleyScada.Api.Application.Queries.Products
+﻿namespace WembleyScada.Api.Application.Queries.Products;
+
+public class ProductsQuery : IRequest<IEnumerable<ProductViewModel>>
 {
-    public class ProductsQuery : IRequest<IEnumerable<ProductViewModel>>
-    {
-        public ELineType? LineType { get; }
-    }
+    public ELineType? LineType { get; }
 }

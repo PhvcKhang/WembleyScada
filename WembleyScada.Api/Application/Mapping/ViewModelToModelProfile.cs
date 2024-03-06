@@ -1,6 +1,4 @@
-﻿namespace WembleyScada.Api.Application.Mapping
+﻿namespace WembleyScada.Api.Application.Mapping;
+public class ViewModelToModelProfile
 {
-    public class ViewModelToModelProfile
-    {
-    }
 }

@@ -1,6 +1,5 @@
-﻿namespace WembleyScada.Domain.SeedWork
+﻿namespace WembleyScada.Domain.SeedWork;
+
+public interface IAggregateRoot
 {
-    public interface IAggregateRoot
-    {
-    }
 }

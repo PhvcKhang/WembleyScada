@@ -12,3 +12,4 @@ global using WembleyScada.Domain.AggregateModels.ShiftReportAggregate;
 global using WembleyScada.Domain.AggregateModels.ReferenceAggregate;
 global using WembleyScada.Domain.AggregateModels.ProductAggregate;
 global using WembleyScada.Domain.AggregateModels.ErrorInformationAggregate;
+global using WembleyScada.Domain.Exceptions;
