@@ -2,6 +2,6 @@
 
 public class ShiftReportLatestDetailsQuery : IRequest<IEnumerable<ShotOEEViewModel>>
 {
-    public string? StationId { get; }
-    public int Interval { get; }
+    public string? StationId { get; set; }
+    public int Interval { get; set; }
 }

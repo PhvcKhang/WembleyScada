@@ -2,6 +2,6 @@
 
 public class ParametersQuery : IRequest<IEnumerable<ParameterViewModel>>
 {
-    public string? ReferenceId { get; }
-    public ELineType? LineType { get; }
+    public string? ReferenceId { get; set; }
+    public ELineType? LineType { get; set; }
 }

@@ -2,7 +2,7 @@
 
 public class MachineStatusesQuery: IRequest<IEnumerable<MachineStatusViewModel>>
 {
-    public string? StationId { get; }
-    public DateTime StartTime { get; } = DateTime.MinValue;
-    public DateTime EndTime { get; } = DateTime.Now;
+    public string? StationId { get; set; }
+    public DateTime StartTime { get; set; } = DateTime.MinValue;
+    public DateTime EndTime { get; set; } = DateTime.Now;
 }

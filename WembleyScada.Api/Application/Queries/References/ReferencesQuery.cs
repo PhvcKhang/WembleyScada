@@ -2,6 +2,6 @@
 
 public class ReferencesQuery : IRequest<IEnumerable<ReferenceViewModel>>
 {
-    public string? ProductId { get; }
-    public ELineType? LineType { get; }
+    public string? ProductId { get; set; }
+    public ELineType? LineType { get; set; }
 }

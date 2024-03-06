@@ -2,5 +2,5 @@
 
 public class EmployeesQuery : IRequest<IEnumerable<EmployeeViewModel>>
 {
-    public string? EmployeeId { get; }
+    public string? EmployeeId { get; set; }
 }

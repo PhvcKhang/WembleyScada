@@ -2,5 +2,5 @@
 
 public class StationsQuery : IRequest<IEnumerable<StationViewModel>>
 { 
-    public ELineType? LineType { get; }
+    public ELineType? LineType { get; set; }
 }

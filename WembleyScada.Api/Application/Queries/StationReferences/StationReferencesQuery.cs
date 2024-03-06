@@ -2,6 +2,6 @@
 
 public class StationReferencesQuery : IRequest<IEnumerable<StationReferenceViewModel>>
 {
-    public string? StationId { get; }
-    public string? ReferenceId { get; }
+    public string? StationId { get; set; }
+    public string? ReferenceId { get; set; }
 }

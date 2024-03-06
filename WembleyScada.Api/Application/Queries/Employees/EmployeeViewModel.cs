@@ -2,9 +2,9 @@
 
 public class EmployeeViewModel
 {
-    public string EmployeeId { get; private set; }
-    public string EmployeeName { get; private set; }
-    public List<WorkRecordViewModel> WorkRecords { get; private set; }
+    public string EmployeeId { get; set; }
+    public string EmployeeName { get; set; }
+    public List<WorkRecordViewModel> WorkRecords { get; set; }
 
     public EmployeeViewModel(string employeeId, string employeeName, List<WorkRecordViewModel> workRecords)
     {

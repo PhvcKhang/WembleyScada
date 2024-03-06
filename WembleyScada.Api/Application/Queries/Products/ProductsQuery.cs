@@ -2,5 +2,5 @@
 
 public class ProductsQuery : IRequest<IEnumerable<ProductViewModel>>
 {
-    public ELineType? LineType { get; }
+    public ELineType? LineType { get; set; }
 }
