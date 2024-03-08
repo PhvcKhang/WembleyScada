@@ -9,7 +9,7 @@
         }
 
         [HttpGet]
-        public async Task<IEnumerable<MachineStatusViewModel>> GetListAsync([FromQuery] MachineStatusesQuery query)
+        public async Task<IEnumerable<MachineStatusViewModel>> GetMachineStatuses([FromQuery] MachineStatusesQuery query)
         {
             return await _mediator.Send(query);
         }

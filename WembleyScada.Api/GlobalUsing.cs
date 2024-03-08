@@ -1,15 +1,19 @@
 ﻿global using MediatR;
 global using AutoMapper;
 global using OfficeOpenXml;
+global using Newtonsoft.Json;
 global using LicenseContext = OfficeOpenXml.LicenseContext;
 global using Azure.Storage.Blobs;
 global using Microsoft.AspNetCore.Mvc;
 global using Microsoft.EntityFrameworkCore;
 global using System.Runtime.Serialization;
+global using Microsoft.AspNetCore.SignalR;
 
 
 global using WembleyScada.Api.Application.Mapping;
+global using WembleyScada.Api.Application.Dtos;
 global using WembleyScada.Api.Application.Messages;
+global using WembleyScada.Api.Application.Hubs;
 global using WembleyScada.Api.Application.Messages.ErrorDetails;
 global using WembleyScada.Api.Application.Commands.Employees.Create;
 global using WembleyScada.Api.Application.Commands.Employees.CreateWorkRecord;
@@ -45,6 +49,9 @@ global using WembleyScada.Domain.AggregateModels.ReferenceAggregate;
 
 global using WembleyScada.Infrastructure;
 global using WembleyScada.Infrastructure.Repositories;
+global using WembleyScada.Infrastructure.Communication;
 
+
+global using Buffer = WembleyScada.Api.Workers.Buffer;
 
 

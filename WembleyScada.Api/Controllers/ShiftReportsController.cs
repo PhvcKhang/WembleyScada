@@ -9,7 +9,7 @@
         }
 
         [HttpGet]
-        public async Task<IEnumerable<ShiftReportViewModel>> GetShiftReportsByTime([FromQuery] ShiftReportsQuery query)
+        public async Task<IEnumerable<ShiftReportViewModel>> GetShiftReports([FromQuery] ShiftReportsQuery query)
         {
             return await _mediator.Send(query);
         }

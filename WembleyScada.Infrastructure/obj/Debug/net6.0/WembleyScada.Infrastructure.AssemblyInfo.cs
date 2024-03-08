@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WembleyScada.Infrastructure")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+db5e90a6877a4efe89a2fd89a95d68bcaafd753d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bbff4aa9b7d7e9d6b5953367997aaa04a1bf892f")]
 [assembly: System.Reflection.AssemblyProductAttribute("WembleyScada.Infrastructure")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WembleyScada.Infrastructure")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

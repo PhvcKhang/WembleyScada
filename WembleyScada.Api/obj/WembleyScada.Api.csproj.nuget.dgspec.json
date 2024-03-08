@@ -70,6 +70,10 @@
               "target": "Package",
               "version": "[7.0.5, )"
             },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.5.0, )"
@@ -215,6 +219,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "MQTTnet": {
+              "target": "Package",
+              "version": "[4.3.3.952, )"
+            },
             "MediatR": {
               "target": "Package",
               "version": "[12.2.0, )"

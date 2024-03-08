@@ -7,6 +7,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddSignalR();
 
 builder.Services.AddCors(options =>
 {
@@ -39,6 +40,15 @@ builder.Services.AddMediatR(cfg =>
     cfg.RegisterServicesFromAssemblyContaining<Entity>();
 });
 
+var configure = builder.Configuration;
+
+builder.Services.Configure<MqttOptions>(configure.GetSection("MqttOptions"));
+
+builder.Services.AddHostedService<ScadaHost>();
+
+builder.Services.AddSingleton<ManagedMqttClient>();
+builder.Services.AddSingleton<Buffer>();
+
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 builder.Services.AddScoped<IStationRepository, StationRepository>();
 builder.Services.AddScoped<IStationReferenceRepository, StationReferenceRepository>();
@@ -60,5 +70,6 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+app.MapHub<NotificationHub>("/NotificationHub");
 
 app.Run();

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "ALjmTO8e8U3G33hpq2bw3dnEGYPXZCJjgi9daW8LNoI845vxFp2bSx5xnho2Zh20Nw918hzCB5dra4tl4bvUkw==",
+  "dgSpecHash": "kY9qe6HFHaD7EBFdoFgtsi2pnrqfewVNyiqqIHi9g7uTbCJk8Xk2HPkWpg/dzxzL63RnuNeRDangI486pk1Yng==",
   "success": true,
   "projectFilePath": "C:\\Users\\LEGION\\Documents\\Visual Studio 2022\\Projects\\Wembley_Project\\WembleyScada\\WembleyScada.Api\\WembleyScada.Api.csproj",
   "expectedPackageFiles": [
@@ -58,6 +58,8 @@
     "C:\\Users\\LEGION\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",
     "C:\\Users\\LEGION\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
     "C:\\Users\\LEGION\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
+    "C:\\Users\\LEGION\\.nuget\\packages\\mqttnet\\4.3.3.952\\mqttnet.4.3.3.952.nupkg.sha512",
+    "C:\\Users\\LEGION\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\LEGION\\.nuget\\packages\\swashbuckle.aspnetcore\\6.5.0\\swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
     "C:\\Users\\LEGION\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
     "C:\\Users\\LEGION\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.5.0\\swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
