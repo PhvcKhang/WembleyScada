@@ -10,4 +10,24 @@ public class Shot
     public double Q { get; private set; }
     public double OEE { get; private set; }
 
+    public Shot(double executionTime, double cycleTime, DateTime timeStamp, double a, double p, double q, double oEE)
+    {
+        ExecutionTime = executionTime;
+        CycleTime = cycleTime;
+        TimeStamp = timeStamp;
+        A = a;
+        P = p;
+        Q = q;
+        OEE = oEE;
+    }
+    public Shot(DateTime timeStamp, double a, double p, double q, double oEE)
+    {
+        ExecutionTime = 0;
+        CycleTime = 0;
+        TimeStamp = timeStamp;
+        A = a;
+        P = p;
+        Q = q;
+        OEE = oEE;
+    }
 }
