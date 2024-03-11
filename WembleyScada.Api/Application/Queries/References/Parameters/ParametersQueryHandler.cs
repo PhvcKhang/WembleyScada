@@ -1,4 +1,5 @@
-﻿
+﻿using WembleyScada.Api.Application.Queries.References.Parameters.ViewModels;
+
 namespace WembleyScada.Api.Application.Queries.References.Parameters;
 
 public class ParametersQueryHandler : IRequestHandler<ParametersQuery, IEnumerable<ParameterViewModel>>
@@ -13,18 +14,19 @@ public class ParametersQueryHandler : IRequestHandler<ParametersQuery, IEnumerab
     }
     public async Task<IEnumerable<ParameterViewModel>> Handle(ParametersQuery request, CancellationToken cancellationToken)
     {
-        var lines = _context.Lines
+        var line = await _context.Lines
             .AsNoTracking()
-            .Where(x => x.LineType == request.LineType);
+            .FirstOrDefaultAsync(x => x.LineId == request.LineId);
 
         var queryable = _context.References
+            .Include(x => x.UsableLines)
             .Include(x => x.Product)
             .Include(x => x.Lots)
             .AsNoTracking();
 
-        if (request.LineType is not null)
+        if (request.LineId is not null && line is not null)
         {
-            queryable = queryable.Where(x => x.UsableLines == lines);
+            queryable = queryable.Where(x => x.UsableLines.Contains(line));
         }
 
         if (request.ReferenceId is not null)
@@ -34,22 +36,27 @@ public class ParametersQueryHandler : IRequestHandler<ParametersQuery, IEnumerab
 
         var references = await queryable.ToListAsync();
 
-        references = references.GroupBy(x => x.UsableLines)
-        .Select(group => group.OrderByDescending(x => x.Lots.Any() ? x.Lots.Max(x => x.StartTime) : DateTime.MinValue).First())
-        .ToList();
+        references = references
+            .GroupBy(x => x.UsableLines)
+            .Select(group => group.OrderByDescending(x => x.Lots.Any() ? x.Lots.Max(x => x.StartTime) : DateTime.MinValue).First())
+            .ToList();
 
         var viewModels = new List<ParameterViewModel>();
+
         foreach (var reference in references)
         {
             var lot = reference.Lots.Find(x => x.LotStatus == ELotStatus.Working);
+            var lineViewModels = _mapper.Map<List<LineShortViewModel>>(reference.UsableLines);
 
             var viewModel = new ParameterViewModel(
                 lot is null ? string.Empty : reference.Product.ProductName,
+                reference.ReferenceId,
                 lot is null ? string.Empty : reference.ReferenceName,
-                lot is null ? string.Empty : lot.LotId,
+                lot is null ? string.Empty : lot.LotCode,
                 lot is null ? 0 : lot.LotSize,
-
-                await MapToStationInfoViewModel(reference));
+                lineViewModels,
+                await MapToStationInfoViewModel(reference)
+                );
 
             viewModels.Add(viewModel);
         }

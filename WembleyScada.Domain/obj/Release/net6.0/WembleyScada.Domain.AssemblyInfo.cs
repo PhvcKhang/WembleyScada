@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WembleyScada.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+db5e90a6877a4efe89a2fd89a95d68bcaafd753d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8a21b1a8dfb03bee0083b69483770de1e708ba10")]
 [assembly: System.Reflection.AssemblyProductAttribute("WembleyScada.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WembleyScada.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

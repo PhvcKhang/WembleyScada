@@ -17,9 +17,9 @@ public class LinesQueryHandler : IRequestHandler<LinesQuery, IEnumerable<LineVie
             .Include(x => x.Stations)
             .AsNoTracking();
 
-        if (request.LineType is not null)
+        if (request.LineId is not null)
         {
-            queryable = queryable.Where(x => x.LineType == request.LineType);
+            queryable = queryable.Where(x => x.LineId == request.LineId);
         }
 
         var lines = await queryable.ToListAsync();

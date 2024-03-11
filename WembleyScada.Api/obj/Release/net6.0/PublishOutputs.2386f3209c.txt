@@ -41,6 +41,8 @@ C:\Users\LEGION\Documents\Visual Studio 2022\Projects\Wembley_Project\WembleySca
 C:\Users\LEGION\Documents\Visual Studio 2022\Projects\Wembley_Project\WembleyScada\WembleyScada.Api\obj\Release\net6.0\PubTmp\Out\Microsoft.OpenApi.dll
 C:\Users\LEGION\Documents\Visual Studio 2022\Projects\Wembley_Project\WembleyScada\WembleyScada.Api\obj\Release\net6.0\PubTmp\Out\Microsoft.SqlServer.Server.dll
 C:\Users\LEGION\Documents\Visual Studio 2022\Projects\Wembley_Project\WembleyScada\WembleyScada.Api\obj\Release\net6.0\PubTmp\Out\Microsoft.Win32.SystemEvents.dll
+C:\Users\LEGION\Documents\Visual Studio 2022\Projects\Wembley_Project\WembleyScada\WembleyScada.Api\obj\Release\net6.0\PubTmp\Out\MQTTnet.dll
+C:\Users\LEGION\Documents\Visual Studio 2022\Projects\Wembley_Project\WembleyScada\WembleyScada.Api\obj\Release\net6.0\PubTmp\Out\Newtonsoft.Json.dll
 C:\Users\LEGION\Documents\Visual Studio 2022\Projects\Wembley_Project\WembleyScada\WembleyScada.Api\obj\Release\net6.0\PubTmp\Out\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\LEGION\Documents\Visual Studio 2022\Projects\Wembley_Project\WembleyScada\WembleyScada.Api\obj\Release\net6.0\PubTmp\Out\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\LEGION\Documents\Visual Studio 2022\Projects\Wembley_Project\WembleyScada\WembleyScada.Api\obj\Release\net6.0\PubTmp\Out\Swashbuckle.AspNetCore.SwaggerUI.dll

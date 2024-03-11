@@ -13,33 +13,28 @@ public class ReferencesQueryHandler : IRequestHandler<ReferencesQuery, IEnumerab
 
     public async Task<IEnumerable<ReferenceViewModel>> Handle(ReferencesQuery request, CancellationToken cancellationToken)
     {
-        var queryableReference = _context.References
+        var queryable = _context.References
             .Include(x => x.UsableLines)
             .Include(x => x.Product)
             .AsNoTracking();
 
         var references = new List<Reference>();
 
-        var lines = await _context.Lines
+        var line = await _context.Lines
             .AsNoTracking()
-            .Where(x => x.LineType == request.LineType)
-            .ToListAsync();
+            .FirstOrDefaultAsync(x => x.LineId == request.LineId);
 
-        if (request.LineType is not null && lines is not null)
+        if (request.LineId is not null && line is not null)
         {
-            foreach (var line in lines)
-            {
-                queryableReference = queryableReference
-                    .Where(x => x.UsableLines.Contains(line));
-            }
+                queryable = queryable.Where(x => x.UsableLines.Contains(line));
         }
 
         if (request.ProductId is not null)
         {
-            references = await queryableReference
-            .Where(x => x.ProductId == request.ProductId)
-            .ToListAsync();
+            queryable = queryable.Where(x => x.ProductId == request.ProductId);
         }
+
+        references = await queryable.ToListAsync();
 
         var viewModels = _mapper.Map<IEnumerable<ReferenceViewModel>>(references);
         return viewModels;

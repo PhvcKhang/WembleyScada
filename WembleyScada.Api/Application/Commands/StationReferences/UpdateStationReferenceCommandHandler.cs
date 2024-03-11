@@ -16,9 +16,9 @@ public class UpdateStationReferenceCommandHandler : IRequestHandler<UpdateStatio
         var stationReference = await _stationReferenceRepository.GetAsync(request.ReferenceId, request.StationId)
             ?? throw new ResourceNotFoundException($"The entity of type {nameof(StationReference)} with ReferenceId: {request.ReferenceId}, StationId: {request.StationId} can be found");
 
-        var mfcs = _mapper.Map<List<MFC>>(request.MFCs);
-        
-        stationReference.UpdateMFC(mfcs);
+        var mFCs = _mapper.Map<List<MFC>>(request.MFCs);
+
+        stationReference.UpdateMFCs(mFCs);
 
         return await _stationReferenceRepository.UnitOfWork.SaveEntitiesAsync(cancellationToken);
     }

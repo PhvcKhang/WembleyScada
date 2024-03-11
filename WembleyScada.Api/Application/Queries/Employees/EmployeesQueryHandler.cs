@@ -13,7 +13,10 @@ public class EmployeesQueryHandler : IRequestHandler<EmployeesQuery, IEnumerable
 
     public async Task<IEnumerable<EmployeeViewModel>> Handle(EmployeesQuery request, CancellationToken cancellationToken)
     {
-        var queryable = _context.Employees.AsNoTracking();
+        var queryable = _context.Employees
+            .Include(x => x.WorkRecords)
+            .ThenInclude(x => x.Station)
+            .AsNoTracking();
 
         if(request.EmployeeId is not null)
         {

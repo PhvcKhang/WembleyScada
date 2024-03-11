@@ -5,6 +5,7 @@ global using System.Threading.Tasks;
 global using MediatR;
 global using MQTTnet;
 global using System.Timers;
+global using Microsoft.EntityFrameworkCore.Storage;
 global using Timer = System.Timers.Timer;
 global using MQTTnet.Client;
 global using Microsoft.Extensions.Options;

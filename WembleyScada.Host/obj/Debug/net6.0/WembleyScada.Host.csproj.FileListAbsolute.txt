@@ -1,0 +1,6 @@
+C:\Users\LEGION\Documents\Visual Studio 2022\Projects\Wembley_Project\WembleyScada\WembleyScada.Host\obj\Debug\net6.0\WembleyScada.Host.csproj.AssemblyReference.cache
+C:\Users\LEGION\Documents\Visual Studio 2022\Projects\Wembley_Project\WembleyScada\WembleyScada.Host\obj\Debug\net6.0\WembleyScada.Host.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\LEGION\Documents\Visual Studio 2022\Projects\Wembley_Project\WembleyScada\WembleyScada.Host\obj\Debug\net6.0\WembleyScada.Host.AssemblyInfoInputs.cache
+C:\Users\LEGION\Documents\Visual Studio 2022\Projects\Wembley_Project\WembleyScada\WembleyScada.Host\obj\Debug\net6.0\WembleyScada.Host.AssemblyInfo.cs
+C:\Users\LEGION\Documents\Visual Studio 2022\Projects\Wembley_Project\WembleyScada\WembleyScada.Host\obj\Debug\net6.0\WembleyScada.Host.csproj.CoreCompileInputs.cache
+C:\Users\LEGION\Documents\Visual Studio 2022\Projects\Wembley_Project\WembleyScada\WembleyScada.Host\obj\Debug\net6.0\WembleyScada.Host.sourcelink.json

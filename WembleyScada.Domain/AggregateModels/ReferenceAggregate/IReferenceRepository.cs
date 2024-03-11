@@ -3,5 +3,5 @@
 public interface IReferenceRepository : IRepository<Reference>
 {
     Task<Reference?> GetAsync(string referenceName);
-    Task<IEnumerable<Reference>> GetByLineTypeAsync (ELineType lineType);
+    Task<IEnumerable<Reference>> GetByLineIdAsync (string lineId);
 }

@@ -21,10 +21,13 @@ public class UpdateParameterCommandHandler : IRequestHandler<UpdateParameterComm
         
         reference.UpdateLotStatus(ELotStatus.Completed, DateTime.UtcNow.AddHours(7));
 
-        var line = reference.UsableLines.First();
+        var stations = new List<Station>();
 
-        var stations = await _stationRepository.GetByLineTypeAsync(line.LineType);
-        
+        foreach (var line in reference.UsableLines)
+        {
+            var stationsOfLine = await _stationRepository.GetByLineTypeAsync(line.LineId);
+            stations.AddRange(stationsOfLine);
+        }
 
         foreach (var station in stations)
         {

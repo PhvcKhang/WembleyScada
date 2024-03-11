@@ -16,10 +16,9 @@ public class StationsQueryHandler : IRequestHandler<StationsQuery, IEnumerable<S
     {
         var queryable = _context.Stations.AsNoTracking();
 
-        if(request.LineType is not null)
+        if(request.LineId is not null)
         {
-            queryable = queryable
-                .Where(x => x.Line.LineType == request.LineType);
+            queryable = queryable.Where(x => x.Line.LineId == request.LineId);
         }
 
         var stations = await queryable.ToListAsync();

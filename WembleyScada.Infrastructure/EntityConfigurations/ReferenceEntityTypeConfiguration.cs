@@ -14,7 +14,8 @@ public class ReferenceEntityTypeConfiguration : IEntityTypeConfiguration<Referen
             .IsUnique();
 
         builder.HasMany(r => r.Lots)
-            .WithOne();
+            .WithOne()
+            .HasForeignKey(l => l.ReferenceId);
 
         builder.HasMany(r => r.UsableLines)
             .WithMany();

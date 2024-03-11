@@ -15,7 +15,7 @@ public class Reference : IAggregateRoot
 #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
     public void AddLot(string lotCode, int lotSize, ELotStatus lotStatus, DateTime startTime)
     {
-        var lot = new Lot(lotCode, lotSize, lotStatus, startTime);
+        var lot = new Lot(lotCode, lotSize, lotStatus, startTime, ReferenceId);
 
         if (Lots.Any(d => d.LotCode == lotCode))
         {

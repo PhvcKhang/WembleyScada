@@ -16,16 +16,16 @@ public class CreateLotCommandHandler : IRequestHandler<CreateLotCommand, bool>
         var reference = await _referenceRepository.GetAsync(request.ReferenceName)
             ?? throw new ResourceNotFoundException($"The entity of type '{nameof(Reference)}' with Name '{request.ReferenceName}' cannot be found.");
 
-        var referencesOfLineType = new List<Reference>();
+        var referencesOfLine= new List<Reference>();
 
         foreach (var line in reference.UsableLines)
         {
-            var referenceItems = await _referenceRepository.GetByLineTypeAsync(line.LineType);
+            var referenceItems = await _referenceRepository.GetByLineIdAsync(line.LineId);
 
-            referencesOfLineType.AddRange(referenceItems);
+            referencesOfLine.AddRange(referenceItems);
         }
 
-        foreach (var referenceItem in referencesOfLineType)
+        foreach (var referenceItem in referencesOfLine)
         {
             var workingLot = referenceItem.Lots.Find(x => x.LotStatus == ELotStatus.Working);
 

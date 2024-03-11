@@ -3,5 +3,5 @@
 public class ParametersQuery : IRequest<IEnumerable<ParameterViewModel>>
 {
     public string? ReferenceId { get; set; }
-    public ELineType? LineType { get; set; }
+    public string? LineId { get; set; }
 }

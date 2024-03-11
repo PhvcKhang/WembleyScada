@@ -2,5 +2,5 @@
 
 public class LinesQuery : IRequest<IEnumerable<LineViewModel>>
 {
-    public ELineType? LineType { get; set; }
+    public string? LineId { get; set; }
 }

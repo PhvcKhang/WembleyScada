@@ -103,3 +103,5 @@ C:\Users\LEGION\Documents\Visual Studio 2022\Projects\Wembley_Project\WembleySca
 C:\Users\LEGION\Documents\Visual Studio 2022\Projects\Wembley_Project\WembleyScada\WembleyScada.Api\obj\Release\net6.0\WembleyScada.Api.pdb
 C:\Users\LEGION\Documents\Visual Studio 2022\Projects\Wembley_Project\WembleyScada\WembleyScada.Api\obj\Release\net6.0\WembleyScada.Api.genruntimeconfig.cache
 C:\Users\LEGION\Documents\Visual Studio 2022\Projects\Wembley_Project\WembleyScada\WembleyScada.Api\obj\Release\net6.0\ref\WembleyScada.Api.dll
+C:\Users\LEGION\Documents\Visual Studio 2022\Projects\Wembley_Project\WembleyScada\WembleyScada.Api\bin\Release\net6.0\MQTTnet.dll
+C:\Users\LEGION\Documents\Visual Studio 2022\Projects\Wembley_Project\WembleyScada\WembleyScada.Api\bin\Release\net6.0\Newtonsoft.Json.dll

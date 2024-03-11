@@ -1,7 +1,4 @@
-﻿
-using Microsoft.EntityFrameworkCore.Storage;
-
-namespace WembleyScada.Infrastructure;
+﻿namespace WembleyScada.Infrastructure;
 
 public class ApplicationDbContext : DbContext, IUnitOfWork
 {

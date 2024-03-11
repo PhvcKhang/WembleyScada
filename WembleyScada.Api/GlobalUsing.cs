@@ -37,8 +37,10 @@ global using WembleyScada.Api.Application.Queries.ShiftReports.ShortenDetail;
 global using WembleyScada.Api.Application.Exceptions;
 global using WembleyScada.Api.Application.Commands.DeviceReferences;
 
+
 global using WembleyScada.Domain.SeedWork;
 global using WembleyScada.Domain.AggregateModels.ErrorInformationAggregate;
+global using WembleyScada.Domain.AggregateModels.ShiftReportAggregate;
 global using WembleyScada.Domain.AggregateModels.MachineStatusAggregate;
 global using WembleyScada.Domain.AggregateModels.StationReferenceAggregate;
 global using WembleyScada.Domain.AggregateModels.StationAggregate;

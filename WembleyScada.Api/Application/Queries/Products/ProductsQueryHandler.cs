@@ -15,20 +15,16 @@ public class ProductsQueryHandler : IRequestHandler<ProductsQuery, IEnumerable<P
 
     public async Task<IEnumerable<ProductViewModel>> Handle(ProductsQuery request, CancellationToken cancellationToken)
     {
-        var lines = await _context.Lines
+        var line = await _context.Lines
             .AsNoTracking()
-            .Where(x => x.LineType == request.LineType)
-            .ToListAsync();
+            .FirstOrDefaultAsync(x => x.LineId == request.LineId);
 
         var queryable = _context.Products
                     .AsNoTracking();
 
-        if (request.LineType is not null && lines is not null)
+        if (request.LineId is not null && line is not null)
         {
-            foreach (var line in lines)
-            {
-                queryable = queryable.Where(x => x.UsableLines.Contains(line));
-            }
+            queryable = queryable.Where(x => x.UsableLines.Contains(line));
         }
 
         var products = await queryable.ToListAsync();

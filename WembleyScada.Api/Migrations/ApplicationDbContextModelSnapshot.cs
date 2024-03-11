@@ -243,6 +243,7 @@ namespace WembleyScada.Api.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("ReferenceId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("StartTime")
@@ -361,9 +362,8 @@ namespace WembleyScada.Api.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("Value")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("Value")
+                        .HasColumnType("float");
 
                     b.HasKey("MFCId");
 
@@ -488,7 +488,9 @@ namespace WembleyScada.Api.Migrations
                 {
                     b.HasOne("WembleyScada.Domain.AggregateModels.ReferenceAggregate.Reference", null)
                         .WithMany("Lots")
-                        .HasForeignKey("ReferenceId");
+                        .HasForeignKey("ReferenceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("WembleyScada.Domain.AggregateModels.ReferenceAggregate.Reference", b =>

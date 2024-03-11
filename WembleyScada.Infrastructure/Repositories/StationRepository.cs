@@ -11,13 +11,15 @@ public class StationRepository : BaseRepository, IStationRepository
     public async Task<Station?> GetAsync(string stationId)
     {
         return await _context.Stations
+            .Include(x => x.EmployeeWorkRecords)
             .FirstOrDefaultAsync(x => x.StationId == stationId);
     }
 
-    public async Task<IEnumerable<Station>> GetByLineTypeAsync(ELineType lineType)
+    public async Task<IEnumerable<Station>> GetByLineTypeAsync(string lineId)
     {
         return await _context.Stations
-            .Where(x => x.Line.LineType == lineType)
+            .Include(x => x.EmployeeWorkRecords)
+            .Where(x => x.Line.LineId == lineId)
             .ToListAsync();
     }
 }
