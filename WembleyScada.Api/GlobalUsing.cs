@@ -17,6 +17,7 @@ global using WembleyScada.Api.Application.Hubs;
 global using WembleyScada.Api.Application.Messages.ErrorDetails;
 global using WembleyScada.Api.Application.Commands.Employees.Create;
 global using WembleyScada.Api.Application.Commands.Employees.CreateWorkRecord;
+
 global using WembleyScada.Api.Application.Commands.Employees.CreateEmployee;
 global using WembleyScada.Api.Application.Commands.Employees.DeleteEmployee;
 global using WembleyScada.Api.Application.Commands.Employees.UpdateWorkRecord;
@@ -25,6 +26,7 @@ global using WembleyScada.Api.Application.Queries.Employees;
 global using WembleyScada.Api.Application.Queries.References;
 global using WembleyScada.Api.Application.Queries.Lines;
 global using WembleyScada.Api.Application.Queries.Products;
+global using WembleyScada.Api.Application.Queries.References.Parameters.ViewModels;
 global using WembleyScada.Api.Application.Queries.StationReferences;
 global using WembleyScada.Api.Application.Queries.ErrorInformations;
 global using WembleyScada.Api.Application.Queries.MachineStatuses;

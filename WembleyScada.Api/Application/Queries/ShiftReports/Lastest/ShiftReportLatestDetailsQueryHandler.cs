@@ -27,8 +27,8 @@ public class ShiftReportLatestDetailsQueryHandler : IRequestHandler<ShiftReportL
            .AsNoTracking()
            .FirstOrDefaultAsync();
 
-        var latestShiftReport = await queryable.FirstOrDefaultAsync() 
-            ?? throw new Exception($"Don't have any Report in Station {request.StationId}");
+        var latestShiftReport = await queryable.FirstOrDefaultAsync();
+        if(latestShiftReport is null) return new List<ShotOEEViewModel>();
 
         var shots = latestShiftReport.Shots;
 

@@ -1,5 +1,4 @@
 ﻿namespace WembleyScada.Api.Application.Dtos;
-
 public class TagChangedNotification
 {
     public string StationId { get; set; }

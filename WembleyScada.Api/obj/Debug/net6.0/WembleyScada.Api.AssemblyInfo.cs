@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WembleyScada.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8a21b1a8dfb03bee0083b69483770de1e708ba10")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+48a7198e72d4de40fb7c707faebfb9fdfd1e716c")]
 [assembly: System.Reflection.AssemblyProductAttribute("WembleyScada.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WembleyScada.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

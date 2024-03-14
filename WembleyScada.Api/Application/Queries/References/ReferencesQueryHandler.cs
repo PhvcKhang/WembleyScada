@@ -26,7 +26,7 @@ public class ReferencesQueryHandler : IRequestHandler<ReferencesQuery, IEnumerab
 
         if (request.LineId is not null && line is not null)
         {
-                queryable = queryable.Where(x => x.UsableLines.Contains(line));
+            queryable = queryable.Where(x => x.UsableLines.Contains(line));
         }
 
         if (request.ProductId is not null)

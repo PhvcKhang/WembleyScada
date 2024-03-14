@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace WembleyScada.Api.Application.Commands.Employees.CreateEmployeeWorkRecord;
+﻿namespace WembleyScada.Api.Application.Commands.Employees.CreateEmployeeWorkRecord;
 public class CreateWorkRecordCommandHandler : IRequestHandler<CreateWorkRecordCommand, bool>
 {
     private IEmployeeRepository _employeeRepository;

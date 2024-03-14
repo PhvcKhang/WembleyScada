@@ -1,7 +1,4 @@
-﻿
-using WembleyScada.Api.Application.Queries.References.Parameters.ViewModels;
-
-namespace WembleyScada.Api.Application.Mapping;
+﻿namespace WembleyScada.Api.Application.Mapping;
 
 public class ModelToViewModelProfile : Profile
 {

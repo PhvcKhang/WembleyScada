@@ -24,11 +24,11 @@ public class Reference : IAggregateRoot
 
         Lots.Add(lot);
     }
-    public void UpdateLot(string lotId, int lotSize)
+    public void UpdateLot(string lotCode, int lotSize)
     {
         var lot = Lots.FirstOrDefault(x => x.LotStatus == ELotStatus.Working);
 
-        lot?.Update(lotId, lotSize);
+        lot?.Update(lotCode, lotSize);
     }
     public void UpdateLotStatus(ELotStatus lotStatus, DateTime endTime)
     {

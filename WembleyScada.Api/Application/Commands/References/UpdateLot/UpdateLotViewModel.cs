@@ -1,7 +1,4 @@
-﻿using System.Runtime.Serialization;
-using WembleyScada.Domain.AggregateModels.ReferenceAggregate;
-
-namespace WembleyScada.Api.Application.Commands.References;
+﻿namespace WembleyScada.Api.Application.Commands.References;
 
 [DataContract]
 public class UpdateLotViewModel
