@@ -6,11 +6,11 @@ public class ManagedMqttClient
     public MqttOptions Options { get; set; }
     public List<string> SubscribeTopics { get; set; } = new List<string>();
     public bool IsConnected => _mqttClient is not null && _mqttClient.IsConnected;
+
     public event Func<MqttMessage,Task>? MessageReceived;
 
     private IMqttClient? _mqttClient;
     private readonly Timer _reconnetTimer;
-
     #endregion
 
     #region Constructor
@@ -113,8 +113,8 @@ public class ManagedMqttClient
         {
             await MessageReceived(new MqttMessage(topic, payload));
         }
-
     }
+
     public async Task Publish (string topic, string payload, bool retainFlag)
     {
         if(_mqttClient is null)

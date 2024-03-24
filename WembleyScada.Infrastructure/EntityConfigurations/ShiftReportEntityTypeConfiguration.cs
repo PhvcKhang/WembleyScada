@@ -1,11 +1,14 @@
-﻿
-namespace WembleyScada.Infrastructure.EntityConfigurations;
+﻿namespace WembleyScada.Infrastructure.EntityConfigurations;
 
 public class ShiftReportEntityTypeConfiguration : IEntityTypeConfiguration<ShiftReport>
 {
     public void Configure(EntityTypeBuilder<ShiftReport> builder)
     {
         builder.HasKey(shrpt => shrpt.ShiftReportId);
+
+        builder.Property(shrpt => shrpt.ShiftReportId)
+            .HasDefaultValueSql("NEWID()")
+            .ValueGeneratedOnAdd();
 
         builder.HasOne(shrpt => shrpt.Station)
             .WithMany()

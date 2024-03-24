@@ -286,7 +286,9 @@ namespace WembleyScada.Api.Migrations
             modelBuilder.Entity("WembleyScada.Domain.AggregateModels.ShiftReportAggregate.ShiftReport", b =>
                 {
                     b.Property<string>("ShiftReportId")
-                        .HasColumnType("nvarchar(450)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(450)")
+                        .HasDefaultValueSql("NEWID()");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");

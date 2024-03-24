@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "KMD2Ic58PY2r12HmO3bXjRK7OVwZnXalhulB/PgKFXsLIZ0xpazLITe97U590b7oKpNn4ubTb8Z3mzdBSwGsng==",
+  "dgSpecHash": "cItBgezlLGsC7UGuRQLNpsg9ohEpCP+RmPaLM3oYw7jJJAsf/l6A1J3NlpaNW5xJ3HvmDPC2du6xYEV9dw+xSQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\LEGION\\Documents\\Visual Studio 2022\\Projects\\Wembley_Project\\WembleyScada\\WembleyScada.Host\\WembleyScada.Host.csproj",
   "expectedPackageFiles": [
@@ -57,6 +57,7 @@
     "C:\\Users\\LEGION\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.0\\microsoft.netcore.platforms.5.0.0.nupkg.sha512",
     "C:\\Users\\LEGION\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
     "C:\\Users\\LEGION\\.nuget\\packages\\microsoft.sqlserver.server\\1.0.0\\microsoft.sqlserver.server.1.0.0.nupkg.sha512",
+    "C:\\Users\\LEGION\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.19.5\\microsoft.visualstudio.azure.containers.tools.targets.1.19.5.nupkg.sha512",
     "C:\\Users\\LEGION\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",
     "C:\\Users\\LEGION\\.nuget\\packages\\microsoft.win32.systemevents\\5.0.0\\microsoft.win32.systemevents.5.0.0.nupkg.sha512",
     "C:\\Users\\LEGION\\.nuget\\packages\\mqttnet\\4.3.3.952\\mqttnet.4.3.3.952.nupkg.sha512",

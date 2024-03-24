@@ -1,6 +1,4 @@
-﻿using WembleyScada.Api.Application.Queries.Lines;
-
-namespace WembleyScada.Api.Application.Queries.References.Parameters;
+﻿namespace WembleyScada.Api.Application.Queries.References.Parameters;
 
 public class ParametersQueryHandler : IRequestHandler<ParametersQuery, IEnumerable<ParameterViewModel>>
 {

@@ -1,6 +1,4 @@
-﻿
-
-namespace WembleyScada.Infrastructure.Repositories;
+﻿namespace WembleyScada.Infrastructure.Repositories;
 
 public class StationRepository : BaseRepository, IStationRepository
 {

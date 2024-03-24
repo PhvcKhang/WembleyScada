@@ -1,5 +1,4 @@
 ﻿namespace WembleyScada.Domain.AggregateModels.ShiftReportAggregate;
-
 public class ShiftReport: IAggregateRoot
 {
     public string ShiftReportId { get; private set; }
@@ -21,7 +20,6 @@ public class ShiftReport: IAggregateRoot
 
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
     public ShiftReport() { }
-
     public ShiftReport(int shiftNumber, DateTime date, Station station)
     {
         ShiftNumber = shiftNumber;

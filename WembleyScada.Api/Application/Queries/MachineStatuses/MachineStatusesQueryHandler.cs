@@ -21,7 +21,7 @@ public class MachineStatusesQueryHandler: IRequestHandler<MachineStatusesQuery, 
             queryable = queryable
                 .Where(x => x.StationId == request.StationId
                        && x.Date >= request.StartTime
-                       && x.Date <= request.EndTime)
+                       && x.Date <= request.EndTime.AddHours(23).AddMinutes(59).AddSeconds(59))
                 .OrderByDescending(x => x.Timestamp);
         }
 

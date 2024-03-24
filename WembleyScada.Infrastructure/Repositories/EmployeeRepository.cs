@@ -1,5 +1,4 @@
-﻿
-namespace WembleyScada.Infrastructure.Repositories;
+﻿namespace WembleyScada.Infrastructure.Repositories;
 
 public class EmployeeRepository : BaseRepository, IEmployeeRepository
 {
@@ -17,7 +16,7 @@ public class EmployeeRepository : BaseRepository, IEmployeeRepository
     {
         if(!await IsExistedAsync(employee.EmployeeId))
         {
-            await _context.AddAsync(employee);
+            await _context.Employees.AddAsync(employee);
         }
     }
     public async Task<Employee?> GetAsync(string employeeId)

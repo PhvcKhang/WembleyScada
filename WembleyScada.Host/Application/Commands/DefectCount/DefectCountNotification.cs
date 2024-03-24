@@ -3,14 +3,14 @@
 public class DefectCountNotification : INotification
 {
     public string LineId { get; set; }
-    public string DeviceId { get; set; }
+    public string StationId { get; set; }
     public int DefectCount { get; set; }
     public DateTime Timestamp { get; set; }
 
-    public DefectCountNotification(string lineId, string deviceId, int defectCount, DateTime timestamp)
+    public DefectCountNotification(string lineId, string stationId, int defectCount, DateTime timestamp)
     {
         LineId = lineId;
-        DeviceId = deviceId;
+        StationId = stationId;
         DefectCount = defectCount;
         Timestamp = timestamp;
     }

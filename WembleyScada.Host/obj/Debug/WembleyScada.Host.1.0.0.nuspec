@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>WembleyScada.Host</id>
+    <version>1.0.0</version>
+    <authors>WembleyScada.Host</authors>
+    <description>Package Description</description>
+    <repository type="git" commit="47077268abff4af06bb9c772ad6e6a895eea422b" />
+    <dependencies>
+      <group targetFramework="net6.0">
+        <dependency id="WembleyScada.Infrastructure" version="1.0.0" exclude="Build,Analyzers" />
+        <dependency id="MediatR" version="12.2.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Hosting" version="8.0.0" exclude="Build,Analyzers" />
+        <dependency id="Newtonsoft.Json" version="13.0.3" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="C:\Users\LEGION\Documents\Visual Studio 2022\Projects\Wembley_Project\WembleyScada\WembleyScada.Host\bin\Debug\net6.0\WembleyScada.Host.runtimeconfig.json" target="lib\net6.0\WembleyScada.Host.runtimeconfig.json" />
+    <file src="C:\Users\LEGION\Documents\Visual Studio 2022\Projects\Wembley_Project\WembleyScada\WembleyScada.Host\bin\Debug\net6.0\WembleyScada.Host.dll" target="lib\net6.0\WembleyScada.Host.dll" />
+  </files>
+</package>

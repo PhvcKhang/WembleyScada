@@ -1,4 +1,6 @@
-﻿namespace WembleyScada.Api.Controllers
+﻿
+
+namespace WembleyScada.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -10,6 +12,12 @@
 
         [HttpGet]
         public async Task<IEnumerable<StationReferenceViewModel>> GetStationReferences([FromQuery] StationReferencesQuery query)
+        {
+            return await _mediator.Send(query);
+        }
+        [HttpGet]
+        [Route("Store")]
+        public async Task<IEnumerable<StationReferenceStoreViewModel>> GetStationReferenceStores([FromQuery] StationReferenceStoresQuery query)
         {
             return await _mediator.Send(query);
         }

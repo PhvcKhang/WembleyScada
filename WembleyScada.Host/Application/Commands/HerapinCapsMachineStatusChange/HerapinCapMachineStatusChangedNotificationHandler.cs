@@ -43,6 +43,22 @@ public class HerapinCapMachineStatusChangedNotificationHandler : INotificationHa
         await UpdateMachienStatus(notification, station, latestStatus, cancellationToken);
     }
 
+    private async Task HandleOnStatus(HerapinCapMachineStatusChangedNotification notification, Station station, CancellationToken cancellationToken)
+    {
+        _statusTimeBuffers.UpdateStartTime(notification.StationId, notification.Timestamp);
+        _statusTimeBuffers.UpdateTotalPreviousRunningTime(notification.StationId, TimeSpan.Zero);
+
+        var latestShiftReport = await _shiftReportRepository.GetLatestAsync(notification.StationId);
+
+        var date = notification.Timestamp;
+        int shiftNumber = latestShiftReport is null || date != latestShiftReport.Date ? 1 : latestShiftReport.ShiftNumber + 1;
+
+        var shiftReport = new ShiftReport(shiftNumber, date, station);
+
+        await _shiftReportRepository.AddAsync(shiftReport);
+        await _shiftReportRepository.UnitOfWork.SaveEntitiesAsync(cancellationToken);
+    }
+
     private async Task UpdateMachienStatus(HerapinCapMachineStatusChangedNotification notification, Station station, MachineStatus? latestStatus, CancellationToken cancellationToken)
     {
         var latestShiftReport = await _shiftReportRepository.GetLatestAsync(notification.StationId);
@@ -85,21 +101,5 @@ public class HerapinCapMachineStatusChangedNotificationHandler : INotificationHa
 
             _statusTimeBuffers.UpdateTotalPreviousRunningTime(notification.StationId, previousRunningTime + runningTime);
         }
-    }
-
-    private async Task HandleOnStatus(HerapinCapMachineStatusChangedNotification notification, Station station, CancellationToken cancellationToken)
-    {
-        _statusTimeBuffers.UpdateStartTime(notification.StationId, notification.Timestamp);
-        _statusTimeBuffers.UpdateTotalPreviousRunningTime(notification.StationId, TimeSpan.Zero);
-
-        var latestShiftReport = await _shiftReportRepository.GetLatestAsync(notification.StationId);
-
-        var date = notification.Timestamp;
-        int shiftNumber = latestShiftReport is null || date != latestShiftReport.Date ? 1 : latestShiftReport.ShiftNumber + 1;
-
-        var shiftReport = new ShiftReport(shiftNumber, date, station);
-
-        await _shiftReportRepository.AddAsync(shiftReport);
-        await _shiftReportRepository.UnitOfWork.SaveEntitiesAsync(cancellationToken);
     }
 }

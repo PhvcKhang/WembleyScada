@@ -1,4 +1,3 @@
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -41,12 +40,13 @@ builder.Services.AddMediatR(cfg =>
 
 var configure = builder.Configuration;
 
-//builder.Services.Configure<MqttOptions>(configure.GetSection("MqttOptions"));
+builder.Services.Configure<MqttOptions>(configure.GetSection("MqttOptions"));
 
-//builder.Services.AddHostedService<ScadaHost>();
+builder.Services.AddHostedService<ScadaHost>();
 
-//builder.Services.AddSingleton<ManagedMqttClient>();
-//builder.Services.AddSingleton<Buffer>();
+builder.Services.AddSingleton<ManagedMqttClient>();
+builder.Services.AddSingleton<Buffer>();
+builder.Services.AddSingleton<HubUserStorage>();
 
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 builder.Services.AddScoped<IStationRepository, StationRepository>();
@@ -65,10 +65,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
 
 app.MapControllers();
-//app.MapHub<NotificationHub>("/NotificationHub");
+app.MapHub<NotificationHub>("/NotificationHub");
 
 app.Run();

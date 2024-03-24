@@ -36,11 +36,13 @@ public class HerapinCapProductCountNotificationHandler : INotificationHandler<He
         var startRunningTime = _statusTimeBuffers.GetStartRunningTime(notification.StationId);
         var totalPreviousRunningTime = _statusTimeBuffers.GetTotalPreviousRunningTime(notification.StationId);
 
-        var runningTime = totalPreviousRunningTime + (notification.Timestamp - startRunningTime);
-        var elapsedTime = notification.Timestamp - startTime;
+        var runningTime = totalPreviousRunningTime + (notification.Timestamp - startRunningTime); // tổng tg lúc running
+        var elapsedTime = notification.Timestamp - startTime; //tg hiện tại - tg on
 
         double A = runningTime / elapsedTime;
         double P = 2.5 * (notification.ProductCount / 4) / (runningTime.TotalMilliseconds / 1000);
+        // 1 CK -> tạo ra 4 sp, nhãn máy : 1 CK = 2,5s
+        // Vd: ProductCount = 400 => 100 CK => TG lý tưởng tạo ra 400 = 2,5*100
 
         shiftReport.SetA(A);
         shiftReport.SetP(P);

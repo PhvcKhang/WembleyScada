@@ -2,9 +2,9 @@
 
 public class StationViewModel
 {
-    public string StationId { get; private set; }
-    public string StationName { get; private set; }
-    public string LineId { get; private set; }
+    public string StationId { get; set; }
+    public string StationName { get; set; }
+    public string LineId { get; set; }
 
     public StationViewModel(string stationId, string stationName, string lineId)
     {

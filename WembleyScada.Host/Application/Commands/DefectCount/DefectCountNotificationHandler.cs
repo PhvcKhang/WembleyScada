@@ -14,7 +14,7 @@ public class DefectCountNotificationHandler : INotificationHandler<DefectCountNo
 
     public async Task Handle(DefectCountNotification notification, CancellationToken cancellationToken)
     {
-        var shiftReport = await _shiftReportRepository.GetLatestAsync(notification.DeviceId);
+        var shiftReport = await _shiftReportRepository.GetLatestAsync(notification.StationId);
         if (shiftReport is null) return;
 
         shiftReport.SetDefectCount(notification.DefectCount);
@@ -23,8 +23,8 @@ public class DefectCountNotificationHandler : INotificationHandler<DefectCountNo
 
         if (notification.DefectCount > 0)
         {
-            await _metricMessagePublisher.PublishMetricMessage(notification.LineId, notification.DeviceId, "Q", shiftReport.Q, notification.Timestamp);
-            await _metricMessagePublisher.PublishMetricMessage(notification.LineId, notification.DeviceId, "OEE", shiftReport.OEE, notification.Timestamp);
+            await _metricMessagePublisher.PublishMetricMessage(notification.LineId, notification.StationId, "Q", shiftReport.Q, notification.Timestamp);
+            await _metricMessagePublisher.PublishMetricMessage(notification.LineId, notification.StationId, "OEE", shiftReport.OEE, notification.Timestamp);
         }
     }
 }

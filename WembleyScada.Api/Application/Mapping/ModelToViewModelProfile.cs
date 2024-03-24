@@ -23,5 +23,8 @@ public class ModelToViewModelProfile : Profile
             .ForMember(dest => dest.ProductName, opt => opt.MapFrom(src => src.Product.ProductName));
         CreateMap<ErrorStatus, ErrorStatusViewModel>()
             .ForMember(dest => dest.ErrorName, opt => opt.MapFrom(src => src.ErrorInformation.ErrorName));
+        CreateMap<StationReference, StationReferenceStoreViewModel>()
+            .ForMember(dest => dest.ReferenceName, opt => opt.MapFrom(src => src.Reference.ReferenceName))
+            .ForMember(dest => dest.StationName, opt => opt.MapFrom(src => src.Station.StationName));
     }
 }

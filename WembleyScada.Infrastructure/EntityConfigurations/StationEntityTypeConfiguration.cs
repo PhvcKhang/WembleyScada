@@ -1,5 +1,4 @@
-﻿
-namespace WembleyScada.Infrastructure.EntityConfigurations;
+﻿namespace WembleyScada.Infrastructure.EntityConfigurations;
 
 public class StationEntityTypeConfiguration : IEntityTypeConfiguration<Station>
 {

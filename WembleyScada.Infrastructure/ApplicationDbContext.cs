@@ -15,10 +15,14 @@ public class ApplicationDbContext : DbContext, IUnitOfWork
     public DbSet<StationReference> StationReferences { get; set; }
     public DbSet<ErrorInformation> ErrorInformations { get; set; }
 
+
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
-    public ApplicationDbContext(DbContextOptions options) : base(options)
+    public ApplicationDbContext(DbContextOptions options) : base(options) { }
+
 #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+    public ApplicationDbContext(DbContextOptions options, IMediator mediator) : base(options)
     {
+        _mediator = mediator;
     }
 
     public IDbContextTransaction? GetCurrentTransaction() => _currentTransaction;
@@ -44,7 +48,6 @@ public class ApplicationDbContext : DbContext, IUnitOfWork
     {
         await _mediator.DispatchDomainEventsAsync(this);
         await base.SaveChangesAsync(cancellationToken);
-
         return true;
     }
 }

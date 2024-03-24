@@ -14,7 +14,7 @@ public class DownloadReportsQueryHandler : IRequestHandler<DownloadReportsQuery,
         var queryable = _context.ShiftReports
             .Where(x => x.StationId == request.StationId
                      && x.Date >= request.StartTime
-                     && x.Date <= request.EndTime)
+                     && x.Date <= request.EndTime.AddHours(23).AddMinutes(59).AddSeconds(59))
             .OrderByDescending(x => x.Date)
             .ThenByDescending(x => x.ShiftNumber)
             .Include(x => x.Shots)

@@ -1,4 +1,6 @@
-﻿namespace WembleyScada.Api.Application.Queries.References.Parameters.ViewModels;
+﻿using WembleyScada.Api.Application.Queries.StationReferences.MFCs;
+
+namespace WembleyScada.Api.Application.Queries.References.Parameters.ViewModels;
 
 public class StationInfoViewModel
 {

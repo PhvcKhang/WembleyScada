@@ -21,8 +21,8 @@ public class UpdateShiftReportWorker : BackgroundService
         _mqttClient.MessageReceived += OnMqttClientMessageReceivedAsync;
         await _mqttClient.ConnectAsync();
 
-        await _mqttClient.Subscribe("HCM/+/Metric");
-        await _mqttClient.Subscribe("HCM/+/Metric/+");
+        await _mqttClient.Subscribe("HCM/IE-F2-HCA01/Metric");
+        await _mqttClient.Subscribe("HCM/IE-F2-HCA01/Metric/+");
     }
 
     private async Task OnMqttClientMessageReceivedAsync(MqttMessage message)
@@ -55,35 +55,49 @@ public class UpdateShiftReportWorker : BackgroundService
                 case MessageType.EMessageType.HerapinCapProductCount:
                     var productCount = Convert.ToInt32(metric.Value);
                     var herapinCapProductCount = new HerapinCapProductCountNotification(lineId, stationId, productCount, metric.Timestamp);
-                    await mediator.Publish(herapinCapProductCount);
+                    await PublishNotification(herapinCapProductCount, mediator);
                     break;
                 case MessageType.EMessageType.HerapinCapMachineStatus:
                     var statusCode = (long)metric.Value;
                     var machineStatus = (EMachineStatus)statusCode;
                     var herapinCapMachineStatus = new HerapinCapMachineStatusChangedNotification(lineId, stationId, machineStatus, metric.Timestamp);
-                    await mediator.Publish(herapinCapMachineStatus);
+                    await PublishNotification(herapinCapMachineStatus, mediator);
                     break;
                 case MessageType.EMessageType.CycleTime:
                     var cycleTime = (double)metric.Value;
                     var cycleTimeNotification = new CycleTimeNotification(lineId, stationId, cycleTime, metric.Timestamp);
-                    await mediator.Publish(cycleTimeNotification);
+                    await PublishNotification(cycleTimeNotification, mediator);
                     break;
                 case MessageType.EMessageType.ExecutionTime:
                     var executionTime = (double)metric.Value;
                     var executionTimeNotification = new ExecutionTimeNotification(stationId, executionTime);
-                    await mediator.Publish(executionTimeNotification);
+                    await PublishNotification(executionTimeNotification, mediator);
                     break;
                 case MessageType.EMessageType.DefectsCount:
                     var defectsCount = Convert.ToInt32(metric.Value);
                     var defectCountNotification = new DefectCountNotification(lineId, stationId, defectsCount, metric.Timestamp);
-                    await mediator.Publish(defectCountNotification);
+                    await PublishNotification(defectCountNotification, mediator);
                     break;
                 case MessageType.EMessageType.ErrorStatus:
                     var errorValue = Convert.ToInt32(metric.Value);
                     var errorStatusNotification = new ErrorStatusNotification(lineId, stationId, metric.Name, errorValue, metric.Timestamp);
-                    await mediator.Publish(errorStatusNotification);
+                    await PublishNotification(errorStatusNotification, mediator);
                     break;
             }
+        }
+    }
+    private async Task PublishNotification(INotification notification, IMediator mediator)
+    {
+        try
+        {
+            await mediator.Publish(notification);
+        }
+        catch (Exception ex)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Exception: ");
+            Console.WriteLine( ex.Message);
+            Console.ForegroundColor = ConsoleColor.White;
         }
     }
 }

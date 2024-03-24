@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "WembleyScada.Host": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}

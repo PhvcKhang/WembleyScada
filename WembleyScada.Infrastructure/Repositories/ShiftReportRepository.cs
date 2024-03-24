@@ -1,5 +1,4 @@
-﻿
-namespace WembleyScada.Infrastructure.Repositories;
+﻿namespace WembleyScada.Infrastructure.Repositories;
 public class ShiftReportRepository : BaseRepository, IShiftReportRepository
 {
     public ShiftReportRepository(ApplicationDbContext context) : base(context)
@@ -19,7 +18,9 @@ public class ShiftReportRepository : BaseRepository, IShiftReportRepository
     public async Task AddAsync(ShiftReport shiftReport)
     {
         if(!await IsExistedAsync(shiftReport.StationId, shiftReport.ShiftNumber, shiftReport.Date))
+        {
             await _context.ShiftReports.AddAsync(shiftReport);
+        }
     }
 
     public async Task<bool> IsExistedAsync(string stationId, int shiftNumber, DateTime date)

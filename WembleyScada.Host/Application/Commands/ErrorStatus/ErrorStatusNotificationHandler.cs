@@ -1,7 +1,4 @@
-﻿
-
-
-namespace WembleyScada.Host.Application.Commands.ErrorStatus;
+﻿namespace WembleyScada.Host.Application.Commands.ErrorStatus;
 
 public class ErrorStatusNotificationHandler : INotificationHandler<ErrorStatusNotification>
 {
@@ -21,7 +18,7 @@ public class ErrorStatusNotificationHandler : INotificationHandler<ErrorStatusNo
         var errorInformation = await _errorInformationRepository.GetAsync(notification.ErrorId);
         if (errorInformation is null) return;
 
-        var shiftReport = await _shiftReportRepository.GetLatestAsync(notification.DeviceId);
+        var shiftReport = await _shiftReportRepository.GetLatestAsync(notification.StationId);
         if (shiftReport is null) return;
 
         errorInformation.AddErrorStatus(notification.Value, shiftReport.Date, shiftReport.ShiftNumber, notification.Timestamp);
@@ -31,7 +28,7 @@ public class ErrorStatusNotificationHandler : INotificationHandler<ErrorStatusNo
         if (notification.Value == 1)
         {
             await _metricMessagePublisher.PublishMetricMessage(notification.LineId,
-                                                   notification.DeviceId,
+                                                   notification.StationId,
                                                    "errorStatus",
                                                    errorInformation.ErrorName,
                                                    notification.Timestamp);
@@ -39,7 +36,7 @@ public class ErrorStatusNotificationHandler : INotificationHandler<ErrorStatusNo
         else
         {
             await _metricMessagePublisher.PublishMetricMessage(notification.LineId,
-                                                               notification.DeviceId,
+                                                               notification.StationId,
                                                                "endErrorStatus",
                                                                errorInformation.ErrorName,
                                                                notification.Timestamp);

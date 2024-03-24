@@ -8,17 +8,19 @@ global using Microsoft.AspNetCore.Mvc;
 global using Microsoft.EntityFrameworkCore;
 global using System.Runtime.Serialization;
 global using Microsoft.AspNetCore.SignalR;
-
+global using WembleyScada.Api.Workers;
 
 global using WembleyScada.Api.Application.Mapping;
+global using WembleyScada.Api.Application.Hubs;
 global using WembleyScada.Api.Application.Dtos;
 global using WembleyScada.Api.Application.Messages;
-global using WembleyScada.Api.Application.Hubs;
 global using WembleyScada.Api.Application.Messages.ErrorDetails;
 global using WembleyScada.Api.Application.Commands.Employees.Create;
 global using WembleyScada.Api.Application.Commands.Employees.CreateWorkRecord;
 
 global using WembleyScada.Api.Application.Commands.Employees.CreateEmployee;
+global using WembleyScada.Api.Application.Queries.StationReferences.MFCs;
+global using WembleyScada.Api.Application.Queries.StationReferences.Store;
 global using WembleyScada.Api.Application.Commands.Employees.DeleteEmployee;
 global using WembleyScada.Api.Application.Commands.Employees.UpdateWorkRecord;
 global using WembleyScada.Api.Application.Queries.Stations;
@@ -27,7 +29,6 @@ global using WembleyScada.Api.Application.Queries.References;
 global using WembleyScada.Api.Application.Queries.Lines;
 global using WembleyScada.Api.Application.Queries.Products;
 global using WembleyScada.Api.Application.Queries.References.Parameters.ViewModels;
-global using WembleyScada.Api.Application.Queries.StationReferences;
 global using WembleyScada.Api.Application.Queries.ErrorInformations;
 global using WembleyScada.Api.Application.Queries.MachineStatuses;
 global using WembleyScada.Api.Application.Queries.ShiftReports;
@@ -38,7 +39,6 @@ global using WembleyScada.Api.Application.Queries.ShiftReports.Lastest;
 global using WembleyScada.Api.Application.Queries.ShiftReports.ShortenDetail;
 global using WembleyScada.Api.Application.Exceptions;
 global using WembleyScada.Api.Application.Commands.DeviceReferences;
-
 
 global using WembleyScada.Domain.SeedWork;
 global using WembleyScada.Domain.AggregateModels.ErrorInformationAggregate;
@@ -54,7 +54,6 @@ global using WembleyScada.Domain.AggregateModels.ReferenceAggregate;
 global using WembleyScada.Infrastructure;
 global using WembleyScada.Infrastructure.Repositories;
 global using WembleyScada.Infrastructure.Communication;
-
 
 global using Buffer = WembleyScada.Api.Workers.Buffer;
 

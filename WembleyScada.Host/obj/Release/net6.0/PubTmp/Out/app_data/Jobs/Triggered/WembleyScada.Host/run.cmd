@@ -1,0 +1,1 @@
+dotnet WembleyScada.Host.dll %*
