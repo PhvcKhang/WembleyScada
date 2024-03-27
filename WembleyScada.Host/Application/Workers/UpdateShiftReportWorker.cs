@@ -19,6 +19,7 @@ public class UpdateShiftReportWorker : BackgroundService
     private async Task ConnectToMqttBrokerAsync()
     {
         _mqttClient.MessageReceived += OnMqttClientMessageReceivedAsync;
+
         await _mqttClient.ConnectAsync();
 
         await _mqttClient.Subscribe("HCM/IE-F2-HCA01/Metric");

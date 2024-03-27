@@ -27,19 +27,11 @@ public class ErrorStatusNotificationHandler : INotificationHandler<ErrorStatusNo
 
         if (notification.Value == 1)
         {
-            await _metricMessagePublisher.PublishMetricMessage(notification.LineId,
-                                                   notification.StationId,
-                                                   "errorStatus",
-                                                   errorInformation.ErrorName,
-                                                   notification.Timestamp);
+            await _metricMessagePublisher.PublishMetricMessage(notification.LineId, notification.StationId, "errorStatus", errorInformation.ErrorName, notification.Timestamp);
         }
         else
         {
-            await _metricMessagePublisher.PublishMetricMessage(notification.LineId,
-                                                               notification.StationId,
-                                                               "endErrorStatus",
-                                                               errorInformation.ErrorName,
-                                                               notification.Timestamp);
+            await _metricMessagePublisher.PublishMetricMessage(notification.LineId, notification.StationId, "endErrorStatus", errorInformation.ErrorName, notification.Timestamp);
         }
     }
 }

@@ -11,8 +11,8 @@ public class ShiftReport: IAggregateRoot
     public Station Station { get; private set; }
     public List<Shot> Shots {  get; set; }
 
-    public double A;
-    public double P;
+    public double A { get; private set; }
+    public double P { get; private set; }
     public double Q => Shots.Count > 0 ? (double)(ProductCount - DefectCount) / (double)ProductCount : 0;
     public double OEE => Shots.Count > 0 ? A * P * Q : 0;
     public double TotalExecutionTime => Shots.Sum(x => x.ExecutionTime);

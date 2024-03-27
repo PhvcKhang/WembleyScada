@@ -290,6 +290,9 @@ namespace WembleyScada.Api.Migrations
                         .HasColumnType("nvarchar(450)")
                         .HasDefaultValueSql("NEWID()");
 
+                    b.Property<double>("A")
+                        .HasColumnType("float");
+
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
@@ -298,6 +301,9 @@ namespace WembleyScada.Api.Migrations
 
                     b.Property<TimeSpan>("ElapsedTime")
                         .HasColumnType("time");
+
+                    b.Property<double>("P")
+                        .HasColumnType("float");
 
                     b.Property<int>("ProductCount")
                         .HasColumnType("int");
