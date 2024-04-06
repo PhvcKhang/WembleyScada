@@ -7,9 +7,9 @@ public class HubUserStorage
     {
         Users.Add(user);
     }
-    public void Remove(string userId)
+    public void Remove(string connectionId)
     {
-        var user = Users.Find(x => x.UserId == userId);
+        var user = Users.Find(x => x.ConnectionId == connectionId);
 
         if (user is null)
         {

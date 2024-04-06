@@ -2,36 +2,41 @@
 
 public class HubUser : IDisposable
 {
-    private bool IsDisposed = false;
+    private bool isDisposed;
 
-    public string UserId { get; private set; }
-    public List<string> Metrics { get; private set; }
+    public string ConnectionId { get; private set; }
+    public List<string> Topics { get; private set; } = new List<string>();
 
-    public HubUser(string userId, List<string> metrics)
+    public HubUser(string connectionId)
     {
-        UserId = userId;
-        Metrics = metrics;
+        ConnectionId = connectionId;
     }
-    public void Dispose()
+    public void UpdateTopics(List<string> topics)
     {
-        Dispose(true);
-        GC.SuppressFinalize(this);
+        Topics.Clear();
+        Topics.AddRange(topics);
     }
-    ~HubUser()
+    protected virtual void Dispose(bool isDisposing)
     {
-        Dispose(false);
-    }
-    protected virtual void Dispose(bool disposing)
-    {
-        if(!IsDisposed)
+        if (!isDisposed)
         {
-            if(disposing)
+            if (isDisposing)
             {
                 Dispose();
             }
-
-            Dispose();
-            IsDisposed = true;
+            isDisposed = true;
         }
+    }
+    ~HubUser()
+    {
+        // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
+        Dispose(isDisposing: false);
+    }
+
+    public void Dispose()
+    {
+        // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
+        Dispose(isDisposing: true);
+        GC.SuppressFinalize(this);
     }
 }

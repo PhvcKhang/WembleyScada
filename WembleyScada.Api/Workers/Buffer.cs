@@ -10,6 +10,8 @@ public class Buffer
         _mqttClient = mqttClient;
     }
 
+    public string GetAllTags() => System.Text.Json.JsonSerializer.Serialize(tagChangedNotifications);
+
     public async Task Update(TagChangedNotification notification)
     {
         if(notification.TagId != "errorStatus" && notification.TagId != "endErrorStatus")
@@ -59,17 +61,10 @@ public class Buffer
             }
         }
     }
-    public string GetAllTags() => System.Text.Json.JsonSerializer.Serialize(tagChangedNotifications);
-
-    public List<TagChangedNotification> GetTagsByStationId(string stationId)
-    {
-        return tagChangedNotifications
-            .Where(x => x.StationId == stationId)
-            .ToList();
-    }
     public void ClearBuffer(string stationId)
     {
         tagChangedNotifications
             .RemoveAll(x => x.StationId == stationId);
     }
+
 }

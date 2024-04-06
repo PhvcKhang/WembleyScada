@@ -1,4 +1,6 @@
-﻿namespace WembleyScada.Api.Application.Hubs;
+﻿using WembleyScada.Api.Application.Dtos;
+
+namespace WembleyScada.Api.Application.Hubs;
 
 public class NotificationHub : Hub
 {
@@ -13,41 +15,72 @@ public class NotificationHub : Hub
 
     public override async Task OnConnectedAsync()
     {
-        var userId = Context.ConnectionId;
-        var variablesToGet = Context.Items;
-        var user = new HubUser(userId, new List<string>());
+        try
+        {
+            var user = new HubUser(Context.ConnectionId);
+            _hubUserStorage.Add(user);
+        }
+        catch (Exception ex)
+        {
+             await Clients.Caller.SendAsync("OnError", ex.Message);
+        }
         await base.OnConnectedAsync();
     }
     public override async Task OnDisconnectedAsync(Exception? exception)
     {
-        var userId = Context.ConnectionId;
-
-        _hubUserStorage.Remove(userId);
+        try
+        {
+            var userConnectionId = Context.ConnectionId;
+            _hubUserStorage.Remove(userConnectionId);
+            await Clients.Caller.SendAsync("OnError", "Disconnected");
+        }
+        catch(Exception ex)
+        {
+            await Clients.Caller.SendAsync("OnError", "Disconnect Error: " + ex.Message);
+        }
 
         await base.OnDisconnectedAsync(exception);
     }
-    public async Task SendMetricsToUser()
+
+    public async Task UpdateTopics(List<string> topics)
     {
-        var userId = Context.ConnectionId;
-        var user = _hubUserStorage.Users.Find(x => x.UserId == userId);
-        var json = _buffer.GetAllTags();
-
-        if (user is null)
+        try
         {
-            return;
+            var connectionId = Context.ConnectionId;
+
+            var user = _hubUserStorage.Users.Find(x => x.ConnectionId == connectionId); ;
+
+            if (topics is null)
+            {
+                return;
+            }
+
+            await Clients.Caller.SendAsync("Check", System.Text.Json.JsonSerializer.Serialize(user));
+
+            if (user is null)
+            {
+                return;
+            }
+
+            user.UpdateTopics(topics);
+            await Clients.Caller.SendAsync("Check", System.Text.Json.JsonSerializer.Serialize(user));
+            await Clients.Caller.SendAsync("Check", "Updated Successfully");
+
         }
-
-        await Clients.User(user.UserId).SendAsync("GetMetrics", json);
+        catch(Exception ex)
+        {
+            await Clients.Caller.SendAsync("OnError", ex.Message);
+        }
     }
-    public async Task<string> SendAll() => await Task.FromResult(_buffer.GetAllTags());
-
+    public async Task<string> SendAll()
+    {
+        var tags = _buffer.GetAllTags();
+        return await Task.FromResult(tags);
+    }
+        
     public async Task SendAllTags()
     {
         var tags = _buffer.GetAllTags();
         await Clients.All.SendAsync("GetAll", tags);
     }
-
-    //Client gửi ConnectionId với ds biến => lưu lại => change => gửi lên
-    //Memory leak khi có nhiều người subcrise => deconstructor
-    //Làm sao để biết khi user ngắt kết nối thì có thể dispose dữ liệu về user đó
 }
