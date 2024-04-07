@@ -1,42 +1,42 @@
-﻿using WembleyScada.Api.Application.Dtos;
-
-namespace WembleyScada.Api.Application.Hubs;
+﻿namespace WembleyScada.Api.Application.Hubs;
 
 public class NotificationHub : Hub
 {
     private readonly Buffer _buffer;
-    private readonly HubUserStorage _hubUserStorage;
+    private readonly ClientStorage _clientStorage;
 
-    public NotificationHub(Buffer buffer, HubUserStorage hubUserStorage)
+    public NotificationHub(Buffer buffer, ClientStorage clientStorage)
     {
         _buffer = buffer;
-        _hubUserStorage = hubUserStorage;
+        _clientStorage = clientStorage;
     }
 
     public override async Task OnConnectedAsync()
     {
         try
         {
-            var user = new HubUser(Context.ConnectionId);
-            _hubUserStorage.Add(user);
+            var connectionId = Context.ConnectionId;
+            await Clients.Caller.SendAsync("LogInfoMessage", "Client " + connectionId + " has subcribed to the hub");
         }
         catch (Exception ex)
         {
-             await Clients.Caller.SendAsync("OnError", ex.Message);
+            await Clients.Caller.SendAsync("LogInfoMessage", ex.Message);
         }
         await base.OnConnectedAsync();
     }
+
     public override async Task OnDisconnectedAsync(Exception? exception)
     {
         try
         {
-            var userConnectionId = Context.ConnectionId;
-            _hubUserStorage.Remove(userConnectionId);
-            await Clients.Caller.SendAsync("OnError", "Disconnected");
+            var connectionId = Context.ConnectionId;
+            _clientStorage.RemoveClient(connectionId);
+
+            await Clients.Caller.SendAsync("LogInfoMessage", "Disconnected");
         }
         catch(Exception ex)
         {
-            await Clients.Caller.SendAsync("OnError", "Disconnect Error: " + ex.Message);
+            await Clients.Caller.SendAsync("LogInfoMessage", ex.Message);
         }
 
         await base.OnDisconnectedAsync(exception);
@@ -47,31 +47,25 @@ public class NotificationHub : Hub
         try
         {
             var connectionId = Context.ConnectionId;
-
-            var user = _hubUserStorage.Users.Find(x => x.ConnectionId == connectionId); ;
+            var client = new Client(connectionId);
+            _clientStorage.AddClient(client);
 
             if (topics is null)
             {
+                await Clients.Caller.SendAsync("LogInfoMessage", "Topics can not be null");
                 return;
             }
 
-            await Clients.Caller.SendAsync("Check", System.Text.Json.JsonSerializer.Serialize(user));
-
-            if (user is null)
-            {
-                return;
-            }
-
-            user.UpdateTopics(topics);
-            await Clients.Caller.SendAsync("Check", System.Text.Json.JsonSerializer.Serialize(user));
-            await Clients.Caller.SendAsync("Check", "Updated Successfully");
+            client.UpdateTopics(topics);
+            await Clients.Caller.SendAsync("LogInfoMessage", "Updated Successfully");
 
         }
         catch(Exception ex)
         {
-            await Clients.Caller.SendAsync("OnError", ex.Message);
+            await Clients.Caller.SendAsync("LogInfoMessage", ex.Message);
         }
     }
+
     public async Task<string> SendAll()
     {
         var tags = _buffer.GetAllTags();

@@ -46,7 +46,7 @@ builder.Services.AddHostedService<ScadaHost>();
 
 builder.Services.AddSingleton<ManagedMqttClient>();
 builder.Services.AddSingleton<Buffer>();
-builder.Services.AddSingleton<HubUserStorage>();
+builder.Services.AddSingleton<ClientStorage>();
 
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 builder.Services.AddScoped<IStationRepository, StationRepository>();
