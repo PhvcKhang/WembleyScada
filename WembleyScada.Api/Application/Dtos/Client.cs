@@ -5,6 +5,7 @@ public class Client : IDisposable
     private bool isDisposed;
     public string ConnectionId { get; private set; }
     public List<string> RegisteredTopics { get; private set; } = new List<string>();
+    public List<TagChangedNotification> TagChangedNotifications { get; private set; } = new List<TagChangedNotification>();
 
     public Client(string connectionId)
     {
@@ -14,6 +15,10 @@ public class Client : IDisposable
     {
         RegisteredTopics.Clear();
         RegisteredTopics.AddRange(topics);
+    }
+    public void UpdateNotifications(TagChangedNotification notification)
+    {
+        TagChangedNotifications.Add(notification);
     }
     protected virtual void Dispose(bool isDisposing)
     {

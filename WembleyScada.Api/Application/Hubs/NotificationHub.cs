@@ -15,8 +15,7 @@ public class NotificationHub : Hub
     {
         try
         {
-            var connectionId = Context.ConnectionId;
-            await Clients.Caller.SendAsync("LogInfoMessage", "Client " + connectionId + " has subcribed to the hub");
+            await Clients.Caller.SendAsync("LogInfoMessage", "Connected");
         }
         catch (Exception ex)
         {
@@ -57,7 +56,7 @@ public class NotificationHub : Hub
             }
 
             client.UpdateTopics(topics);
-            await Clients.Caller.SendAsync("LogInfoMessage", "Updated Successfully");
+            await Clients.Caller.SendAsync("LogInfoMessage", "Updated Topics Successfully");
 
         }
         catch(Exception ex)

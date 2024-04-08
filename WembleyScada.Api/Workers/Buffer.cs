@@ -17,8 +17,7 @@ public class Buffer
         if(notification.TagId != "errorStatus" && notification.TagId != "endErrorStatus")
         {
             var existedNotification = tagChangedNotifications
-                .FirstOrDefault(x => x.StationId == notification.StationId
-                                      && x.TagId == notification.TagId);
+                .FirstOrDefault(x => x.StationId == notification.StationId && x.TagId == notification.TagId);
 
             if(existedNotification is null)
             {
@@ -33,15 +32,24 @@ public class Buffer
         else if(notification.TagId == "errorStatus")
         {
             if(!tagChangedNotifications
-                .Any(x => x.StationId == notification.StationId
-                       && x.TagId == "errorStatus"
-                       && (string) x.TagValue == (string)notification.TagValue))
+                .Any(x => x.StationId == notification.StationId && x.TagId == "errorStatus" && (string) x.TagValue == (string)notification.TagValue))
             {
                 tagChangedNotifications.Add(notification);
             }
         }
 
-        else if(notification.TagId == "machineStatus")
+        else
+        {
+            var errorStatusExisted = tagChangedNotifications
+                .Find(x => x.StationId == notification.StationId && x.TagId == "errorStatus" && (string)x.TagValue == (string)notification.TagValue);
+
+            if (errorStatusExisted is not null)
+            {
+                tagChangedNotifications.Remove(errorStatusExisted);
+            }
+        }
+
+        if(notification.TagId == "machineStatus")
         {
             var status = Convert.ToInt16(notification.TagValue);
 

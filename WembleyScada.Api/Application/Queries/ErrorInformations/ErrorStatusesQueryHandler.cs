@@ -18,13 +18,13 @@ public class ErrorStatusesQueryHandler: IRequestHandler<ErrorStatusesQuery, IEnu
                 .Include(x => x.ErrorStatuses)
                 .AsNoTracking();
 
-
         var queryableErrorStatuses = queryableErrors.SelectMany(x =>
             x.ErrorStatuses.Where(x => x.Date >= request.StartTime
                                     && x.Date <= request.EndTime.AddHours(23).AddMinutes(59).AddSeconds(59)
                                     && x.Value == 1));
 
         var errorStatuses = await queryableErrorStatuses
+            .Include(x => x.ErrorInformation)
             .OrderByDescending(x => x.Timestamp)
             .ToListAsync();
 

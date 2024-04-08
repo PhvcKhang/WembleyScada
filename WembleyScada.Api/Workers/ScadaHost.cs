@@ -51,13 +51,26 @@ public class ScadaHost : BackgroundService
         var lineId = topicSegments[1];
         var stationId = topicSegments[2];
 
+        if (topicSegments[0] == "HCM")
+        {
+            foreach(var metric in metrics)
+            {
+                lineId = topicSegments[0];
+                stationId = topicSegments[1];
+                var notification = new TagChangedNotification(stationId, lineId, metric.Name, metric.Value, metric.Timestamp);
+                await _buffer.Update(notification);
+                string json = JsonConvert.SerializeObject(notification);
+
+                await _hubContext.Clients.All.SendAsync("TagChanged", json);
+            }
+            return;
+        }
+
         foreach (var metric in metrics)
         {
             var notification = new TagChangedNotification(stationId, lineId, metric.Name, metric.Value, metric.Timestamp);
             await _buffer.Update(notification);
             string json = JsonConvert.SerializeObject(notification);
-
-            await _hubContext.Clients.All.SendAsync("TagChanged", json);
 
             var subscribedClients = await _clientStorage.GetSubcribedClientsByTopic(topic);
 
