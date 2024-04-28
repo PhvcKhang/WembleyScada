@@ -24,6 +24,7 @@ public class UpdateShiftReportWorker : BackgroundService
 
         await _mqttClient.Subscribe("HCM/IE-F2-HCA01/Metric");
         await _mqttClient.Subscribe("HCM/IE-F2-HCA01/Metric/+");
+
     }
 
     private async Task OnMqttClientMessageReceivedAsync(MqttMessage message)

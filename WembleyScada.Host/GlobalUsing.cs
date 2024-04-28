@@ -1,8 +1,10 @@
 ﻿global using Microsoft.Extensions.Hosting;
 global using Microsoft.Extensions.DependencyInjection;
 global using WembleyScada.Host.Application.Buffers;
+global using Microsoft.Extensions.Options;
 global using WembleyScada.Infrastructure.Communication;
 global using MediatR;
+global using RestSharp;
 global using Newtonsoft.Json;
 global using WembleyScada.Domain.AggregateModels.MachineStatusAggregate;
 global using WembleyScada.Host.Application.Dtos;

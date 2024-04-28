@@ -16,6 +16,7 @@
 
         var config = builder.Configuration;
         services.Configure<MqttOptions>(config.GetSection("MqttOptions"));
+        services.Configure<OneSignalOptions>(config.GetSection("OneSignalOptions"));
         services.AddSingleton<ManagedMqttClient>();
 
         services.AddScoped<IStationRepository, StationRepository>();
@@ -24,6 +25,7 @@
         services.AddScoped<IErrorInformationRepository, ErrorInformationRepository>();
 
         services.AddSingleton<MetricMessagePublisher>();
+        services.AddSingleton<OneSignalHelper>();
         services.AddSingleton<ExecutionTimeBuffers>();
         services.AddSingleton<StatusTimeBuffers>();
 

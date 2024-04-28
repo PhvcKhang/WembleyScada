@@ -28,10 +28,17 @@ public class ScadaHost : BackgroundService
 
         await _mqttClient.ConnectAsync();
 
+        await _mqttClient.Subscribe("Wembley/HerapinCap/IE-F2-HCA01/+");
         await _mqttClient.Subscribe("Wembley/HerapinCap/IE-F2-HCA01/+/+");
         await _mqttClient.Subscribe("Wembley/HerapinCap/IE-F2-HCA01/+/+/+");
         await _mqttClient.Subscribe("Wembley/HerapinCap/IE-F2-HCA01/+/+/+/+");
+        await _mqttClient.Subscribe("Wembley/HerapinCap/IE-F2-HCA01/+/+/+/+/+");
+        await _mqttClient.Subscribe("Wembley/HerapinCap/IE-F2-HCA01/+/+/+/+/+/+");
+        await _mqttClient.Subscribe("Wembley/HerapinCap/IE-F2-HCA01/+/+/+/+/+/+/+");
+
         await _mqttClient.Subscribe("HCM/IE-F2-HCA01/Metric/+");
+
+        await _mqttClient.Subscribe("HCM/IE-F3-BLO06/Metric/+");
     }
     #endregion
 

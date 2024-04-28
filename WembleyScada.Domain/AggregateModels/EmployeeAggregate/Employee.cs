@@ -23,7 +23,6 @@ public class Employee : IAggregateRoot
         var personWorkRecord = new WorkRecord(station, startTime, workStatus);
         WorkRecords.Add(personWorkRecord);
     }
-
     public void DeleteWorkRecords()
     {
         WorkRecords.RemoveAll(x => x.WorkStatus == EWorkStatus.Working);

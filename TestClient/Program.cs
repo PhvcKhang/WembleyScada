@@ -21,6 +21,10 @@ internal class Program
 
         await connection.InvokeAsync("UpdateTopics", new List<string>() { "Wembley/HerapinCap/IE-F2-HCA01/S1/out" });
 
+        string result = await connection.InvokeAsync<string>("SendAll");
+
+        Console.WriteLine(result);
+
         Console.ReadLine();
 
     }

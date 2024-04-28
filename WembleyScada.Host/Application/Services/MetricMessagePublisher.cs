@@ -19,4 +19,14 @@ public class MetricMessagePublisher
 
         await _mqttClient.Publish(topic, json, true);
     }
+    public async Task PublishMetricMessageAR(string lineId, string stationId, string metricName, object value, DateTime timestamp)
+    {
+        var topic = $"Wembley/HerapinCap/{stationId}/{metricName}";
+
+        var metricMessage = new MetricMessage(metricName, value, timestamp);
+
+        var json = JsonConvert.SerializeObject(new List<MetricMessage>() { metricMessage });
+
+        await _mqttClient.Publish(topic, json, true);
+    }
 }

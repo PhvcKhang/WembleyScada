@@ -13,6 +13,12 @@ public class ShiftReportDetailViewModel
     public int DefectCount { get; set; }
     public List<ShotViewModel> Shots { get; set; }
 
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+    public ShiftReportDetailViewModel()
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+    {
+    }
+
     public ShiftReportDetailViewModel(double oEE, double a, double p, double q, DateTime date, int shiftNumber, string deviceId, int productCount, int defectCount, List<ShotViewModel> shots)
     {
         OEE = oEE;
