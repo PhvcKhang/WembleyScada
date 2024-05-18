@@ -24,7 +24,7 @@ public class HerapinCapProductCountNotificationHandler : INotificationHandler<He
     public async Task Handle(HerapinCapProductCountNotification notification, CancellationToken cancellationToken)
     {
         var latestStatus = await _machineStatusRepository.GetLatestAsync(notification.StationId);
-        if (latestStatus is null || latestStatus.Status != EMachineStatus.Run) return;
+        //if (latestStatus is null || latestStatus.Status != EMachineStatus.Run) return;
 
         var station = await _stationRepository.GetAsync(notification.StationId);
         if (station is null) return;
@@ -48,13 +48,13 @@ public class HerapinCapProductCountNotificationHandler : INotificationHandler<He
         shiftReport.SetProductCount(notification.ProductCount);
         shiftReport.AddHerapinCapShot(notification.Timestamp, shiftReport.A, shiftReport.P, shiftReport.Q, shiftReport.OEE);
 
-        await _shiftReportRepository.UnitOfWork.SaveEntitiesAsync(cancellationToken);
-
         await _metricMessagePublisher.PublishMetricMessage(notification.LineId, notification.StationId, "A", shiftReport.A, notification.Timestamp);
         await _metricMessagePublisher.PublishMetricMessage(notification.LineId, notification.StationId, "P", shiftReport.P, notification.Timestamp);
         await _metricMessagePublisher.PublishMetricMessage(notification.LineId, notification.StationId, "Q", shiftReport.Q, notification.Timestamp);
         await _metricMessagePublisher.PublishMetricMessage(notification.LineId, notification.StationId, "OEE", shiftReport.OEE, notification.Timestamp);
         await _metricMessagePublisher.PublishMetricMessage(notification.LineId, notification.StationId, "operationTime", shiftReport.ElapsedTime, notification.Timestamp);
         await _metricMessagePublisher.PublishMetricMessage(notification.LineId, notification.StationId, "goodProduct", shiftReport.ProductCount - shiftReport.DefectCount, notification.Timestamp);
+
+        await _shiftReportRepository.UnitOfWork.SaveEntitiesAsync(cancellationToken);
     }
 }

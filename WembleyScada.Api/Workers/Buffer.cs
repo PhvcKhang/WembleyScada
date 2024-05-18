@@ -62,7 +62,8 @@ public class Buffer
 
                 foreach(var tagId in tagIds)
                 {
-                    await _mqttClient.Publish($"{notification.LineId}/{notification.StationId}/Metric/{tagId}", "", true);
+                    await _mqttClient.Publish($"WembleyMedical/{notification.LineId}/{notification.StationId}/Backend/{tagId}", "", true);
+                    await _mqttClient.Publish($"WembleyMedical/{notification.LineId}/{notification.StationId}/Desktop/{tagId}", "", true);
                 }
 
                 ClearBuffer(notification.StationId);

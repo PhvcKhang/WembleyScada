@@ -28,7 +28,6 @@ public class HerapinCapMachineStatusChangedNotificationHandler : INotificationHa
 
         if (notification.MachineStatus == EMachineStatus.On)
         {
-            //if (latestStatus.Status == EMachineStatus.Run) throw new Exception("Operation Error");
             await HandleOnStatus(notification, station, cancellationToken);
         }
         else if (notification.MachineStatus == EMachineStatus.Run)
@@ -51,9 +50,9 @@ public class HerapinCapMachineStatusChangedNotificationHandler : INotificationHa
 
         var latestShiftReport = await _shiftReportRepository.GetLatestAsync(notification.StationId);
 
-        var dayOfDate = notification.Timestamp.Day;
+        var day = notification.Timestamp.Day;
         var date = notification.Timestamp;
-        int shiftNumber = latestShiftReport is null || dayOfDate != latestShiftReport.Date.Day ? 1 : latestShiftReport.ShiftNumber + 1;
+        int shiftNumber = latestShiftReport is null || day != latestShiftReport.Date.Day ? 1 : latestShiftReport.ShiftNumber + 1;
 
         var shiftReport = new ShiftReport(shiftNumber, date, station);
 

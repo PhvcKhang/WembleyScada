@@ -10,12 +10,10 @@ public class ShiftReport : IAggregateRoot
     public string StationId { get; private set; }
     public Station Station { get; private set; }
     public List<Shot> Shots { get; set; }
-
     public double A { get; private set; }
     public double P { get; private set; }
     public double Q => Shots.Count > 0 ? (double) (ProductCount - DefectCount) / (double) ProductCount : 0;
     public double OEE => Shots.Count > 0 ? A * P * Q : 0;
-    public double TotalExecutionTime => Shots.Sum(x => x.ExecutionTime);
     public double TotalCycleTime => Shots.Sum(x => x.CycleTime);
 
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
@@ -49,11 +47,11 @@ public class ShiftReport : IAggregateRoot
         }
     }
 
-    public void AddShot(double executionTime, double cycleTime, DateTime timestamp, double a, double p, double q, double oEE)
+    public void AddShot( double cycleTime, DateTime timestamp, double a, double p, double q, double oEE)
     {
         if (!Shots.Any(x => x.TimeStamp == timestamp))
         {
-            var shot = new Shot(executionTime, cycleTime, timestamp, a, p, q, oEE);
+            var shot = new Shot( cycleTime, timestamp, a, p, q, oEE);
             Shots.Add(shot);
         }
     }

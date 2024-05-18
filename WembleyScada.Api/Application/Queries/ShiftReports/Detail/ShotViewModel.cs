@@ -10,6 +10,10 @@ public class ShotViewModel
     public double Q { get; set; }
     public double OEE { get; set; }
 
+    public ShotViewModel()
+    {
+    }
+
     public ShotViewModel(double executionTime, double cycleTime, DateTime timeStamp, double a, double p, double q, double oEE)
     {
         ExecutionTime = executionTime;

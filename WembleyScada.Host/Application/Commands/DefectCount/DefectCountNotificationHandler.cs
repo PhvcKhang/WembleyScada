@@ -19,12 +19,12 @@ public class DefectCountNotificationHandler : INotificationHandler<DefectCountNo
 
         shiftReport.SetDefectCount(notification.DefectCount);
 
-        await _shiftReportRepository.UnitOfWork.SaveEntitiesAsync(cancellationToken);
-
         if (notification.DefectCount > 0)
         {
             await _metricMessagePublisher.PublishMetricMessage(notification.LineId, notification.StationId, "Q", shiftReport.Q, notification.Timestamp);
             await _metricMessagePublisher.PublishMetricMessage(notification.LineId, notification.StationId, "OEE", shiftReport.OEE, notification.Timestamp);
         }
+
+        await _shiftReportRepository.UnitOfWork.SaveEntitiesAsync(cancellationToken);
     }
 }

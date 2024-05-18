@@ -9,7 +9,6 @@ public class MessageType
         HerapinCapMachineStatus,
         MachineStatus,
         CycleTime,
-        ExecutionTime,
         DefectsCount,
         ErrorStatus,
         Unspecified
@@ -18,9 +17,18 @@ public class MessageType
     public MessageType(string lineId, MetricMessage message)
     {
         if (message.Name == "productCount" && lineId.Contains("HCM")) Value = EMessageType.HerapinCapProductCount;
-        else if (message.Name == "machineStatus" && lineId.Contains("HCM")) Value = EMessageType.HerapinCapMachineStatus;
-        else if (message.Name == "cycleTime") Value = EMessageType.CycleTime;
-        else if (message.Name == "executionTime") Value = EMessageType.ExecutionTime;
+        else if (message.Name == "machineStatus")
+        {
+            if (lineId.Contains("HCM"))
+            {
+                Value = EMessageType.HerapinCapMachineStatus;
+            }
+            else
+            {
+                Value = EMessageType.MachineStatus;
+            }
+        }
+        else if (message.Name.Contains("CYCLE_TIME")) Value = EMessageType.CycleTime;
         else if (message.Name == "errorProduct") Value = EMessageType.DefectsCount;
         else if (message.Name.StartsWith("M")) Value = EMessageType.ErrorStatus;
         else Value = EMessageType.Unspecified;

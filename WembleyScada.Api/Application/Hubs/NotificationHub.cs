@@ -76,4 +76,10 @@ public class NotificationHub : Hub
         var tags = _buffer.GetAllTags();
         await Clients.All.SendAsync("GetAll", tags);
     }
+
+    //Latency measurement
+    public async Task SendPing(long timeStamp)
+    {
+        await Clients.Caller.SendAsync("ReceivePong", timeStamp);
+    }
 }

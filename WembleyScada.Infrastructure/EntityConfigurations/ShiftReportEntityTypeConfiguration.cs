@@ -18,7 +18,6 @@ public class ShiftReportEntityTypeConfiguration : IEntityTypeConfiguration<Shift
         {
             shots.WithOwner();
             shots.Property(sh => sh.TimeStamp).IsRequired();
-            shots.Property(sh => sh.ExecutionTime).IsRequired();
             shots.Property(sh => sh.CycleTime).IsRequired();
         });
 

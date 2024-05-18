@@ -11,7 +11,7 @@ public class MetricMessagePublisher
 
     public async Task PublishMetricMessage(string lineId, string stationId, string metricName, object value, DateTime timestamp)
     {
-        var topic = $"{lineId}/{stationId}/Metric/{metricName}";
+        var topic = $"WembleyMedical/{lineId}/{stationId}/Desktop/{metricName}";
 
         var metricMessage = new MetricMessage(metricName, value, timestamp);
 

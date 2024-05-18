@@ -26,7 +26,6 @@
 
         services.AddSingleton<MetricMessagePublisher>();
         services.AddSingleton<OneSignalHelper>();
-        services.AddSingleton<ExecutionTimeBuffers>();
         services.AddSingleton<StatusTimeBuffers>();
 
         services.AddHostedService<UpdateShiftReportWorker>();

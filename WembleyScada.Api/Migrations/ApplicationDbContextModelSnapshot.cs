@@ -541,9 +541,6 @@ namespace WembleyScada.Api.Migrations
                             b1.Property<double>("CycleTime")
                                 .HasColumnType("float");
 
-                            b1.Property<double>("ExecutionTime")
-                                .HasColumnType("float");
-
                             b1.Property<double>("OEE")
                                 .HasColumnType("float");
 

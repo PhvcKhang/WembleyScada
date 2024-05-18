@@ -1,4 +1,8 @@
-﻿namespace WembleyScada.Api.Workers;
+﻿using Microsoft.Identity.Client;
+using WembleyScada.Domain.AggregateModels.LineAggregate;
+using WembleyScada.Domain.AggregateModels.StationAggregate;
+
+namespace WembleyScada.Api.Workers;
 public class ScadaHost : BackgroundService
 {
     #region Properties
@@ -28,6 +32,7 @@ public class ScadaHost : BackgroundService
 
         await _mqttClient.ConnectAsync();
 
+        //Mobile-AR
         await _mqttClient.Subscribe("Wembley/HerapinCap/IE-F2-HCA01/+");
         await _mqttClient.Subscribe("Wembley/HerapinCap/IE-F2-HCA01/+/+");
         await _mqttClient.Subscribe("Wembley/HerapinCap/IE-F2-HCA01/+/+/+");
@@ -36,9 +41,9 @@ public class ScadaHost : BackgroundService
         await _mqttClient.Subscribe("Wembley/HerapinCap/IE-F2-HCA01/+/+/+/+/+/+");
         await _mqttClient.Subscribe("Wembley/HerapinCap/IE-F2-HCA01/+/+/+/+/+/+/+");
 
-        await _mqttClient.Subscribe("HCM/IE-F2-HCA01/Metric/+");
-
-        await _mqttClient.Subscribe("HCM/IE-F3-BLO06/Metric/+");
+        //Desktop
+        await _mqttClient.Subscribe("WembleyMedical/+/+/Desktop/+");
+        await _mqttClient.Subscribe("WembleyMedical/BTM/IE-F3-BLO06/Desktop/+");
     }
     #endregion
 
@@ -58,21 +63,18 @@ public class ScadaHost : BackgroundService
         var lineId = topicSegments[1];
         var stationId = topicSegments[2];
 
-        if (topicSegments[0] == "HCM")
+        if (topic.Contains("Desktop"))
         {
-            foreach(var metric in metrics)
-            {
-                lineId = topicSegments[0];
-                stationId = topicSegments[1];
-                var notification = new TagChangedNotification(stationId, lineId, metric.Name, metric.Value, metric.Timestamp);
-                await _buffer.Update(notification);
-                string json = JsonConvert.SerializeObject(notification);
-
-                await _hubContext.Clients.All.SendAsync("TagChanged", json);
-            }
-            return;
+            await SendMessageToDesktopClient(topic, stationId, lineId, metrics);
         }
+        else
+        {
+            await SendMessageToMobileClient(topic, stationId, lineId, metrics);
+        }
+    }
 
+    private async Task SendMessageToMobileClient(string topic, string stationId, string lineId, List<MetricMessage> metrics)
+    {
         foreach (var metric in metrics)
         {
             var notification = new TagChangedNotification(stationId, lineId, metric.Name, metric.Value, metric.Timestamp);
@@ -90,6 +92,27 @@ public class ScadaHost : BackgroundService
 
             //var publishTasks = subscribedClients.Select(client => _hubContext.Clients.Client(client.ConnectionId).SendAsync("OnTagChanged", notification)).ToArray();
             //await Task.WhenAll(publishTasks);
+        }
+    }
+
+    private async Task SendMessageToDesktopClient(string topic, string stationId, string lineId, List<MetricMessage> metrics)
+    {
+        foreach (var metric in metrics)
+        {
+            var notification = new TagChangedNotification(stationId, lineId, metric.Name, metric.Value, metric.Timestamp);
+            await _buffer.Update(notification);
+            string json = JsonConvert.SerializeObject(notification);
+
+            await _hubContext.Clients.All.SendAsync("TagChanged", json);
+
+            var subscribedClients = await _clientStorage.GetSubcribedClientsByTopic(topic);
+
+            if (subscribedClients.Count == 0) return;
+
+            foreach (var subscribedClient in subscribedClients)
+            {
+                await _hubContext.Clients.Client(subscribedClient.ConnectionId).SendAsync("OnTagChanged", json);
+            }
         }
     }
     #endregion

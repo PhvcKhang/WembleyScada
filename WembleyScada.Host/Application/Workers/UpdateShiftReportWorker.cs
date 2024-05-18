@@ -22,9 +22,9 @@ public class UpdateShiftReportWorker : BackgroundService
 
         await _mqttClient.ConnectAsync();
 
-        await _mqttClient.Subscribe("HCM/IE-F2-HCA01/Metric");
-        await _mqttClient.Subscribe("HCM/IE-F2-HCA01/Metric/+");
-
+        //WembleyMedical/BTM/IE-F3-BLO06/Backend
+        await _mqttClient.Subscribe("WembleyMedical/+/+/Backend/+");
+        await _mqttClient.Subscribe("WembleyMedical/BTM/IE-F3-BLO06/Backend/+");
     }
 
     private async Task OnMqttClientMessageReceivedAsync(MqttMessage message)
@@ -40,14 +40,15 @@ public class UpdateShiftReportWorker : BackgroundService
         }
 
         var topicSegments = topic.Split('/');
-        var lineId = topicSegments[0];
-        var stationId = topicSegments[1];
+        var lineId = topicSegments[1];
+        var stationId = topicSegments[2];
 
         var metrics = JsonConvert.DeserializeObject<List<MetricMessage>>(payloadMessage);
         if (metrics is null)
         {
             return;
         }
+
         foreach (var metric in metrics)
         {
             var messageType = new MessageType(lineId, metric);
@@ -55,25 +56,27 @@ public class UpdateShiftReportWorker : BackgroundService
             switch (messageType.Value)
             {
                 case MessageType.EMessageType.HerapinCapProductCount:
-                    var productCount = Convert.ToInt32(metric.Value);
-                    var herapinCapProductCount = new HerapinCapProductCountNotification(lineId, stationId, productCount, metric.Timestamp);
-                    await PublishNotification(herapinCapProductCount, mediator);
+                    var herapinCapProductCount = Convert.ToInt32(metric.Value);
+                    var herapinCapProductCountNotification = new HerapinCapProductCountNotification(lineId, stationId, herapinCapProductCount, metric.Timestamp);
+                    await PublishNotification(herapinCapProductCountNotification, mediator);
                     break;
                 case MessageType.EMessageType.HerapinCapMachineStatus:
+                    var herapinCapStatusCode = (long)metric.Value;
+                    var herapinCapMachineStatus = (EMachineStatus)herapinCapStatusCode;
+                    var herapinCapMachineStatusNotification = new HerapinCapMachineStatusChangedNotification(lineId, stationId, herapinCapMachineStatus, metric.Timestamp);
+                    await PublishNotification(herapinCapMachineStatusNotification, mediator);
+                    break;
+
+                case MessageType.EMessageType.MachineStatus:
                     var statusCode = (long)metric.Value;
                     var machineStatus = (EMachineStatus)statusCode;
-                    var herapinCapMachineStatus = new HerapinCapMachineStatusChangedNotification(lineId, stationId, machineStatus, metric.Timestamp);
-                    await PublishNotification(herapinCapMachineStatus, mediator);
+                    var machineStatusNotification = new MachineStatusChangedNotification(lineId, stationId, machineStatus, metric.Timestamp);
+                    await PublishNotification(machineStatusNotification, mediator);
                     break;
                 case MessageType.EMessageType.CycleTime:
-                    var cycleTime = (double)metric.Value;
+                    var cycleTime = Convert.ToDouble(metric.Value);
                     var cycleTimeNotification = new CycleTimeNotification(lineId, stationId, cycleTime, metric.Timestamp);
                     await PublishNotification(cycleTimeNotification, mediator);
-                    break;
-                case MessageType.EMessageType.ExecutionTime:
-                    var executionTime = (double)metric.Value;
-                    var executionTimeNotification = new ExecutionTimeNotification(stationId, executionTime);
-                    await PublishNotification(executionTimeNotification, mediator);
                     break;
                 case MessageType.EMessageType.DefectsCount:
                     var defectsCount = Convert.ToInt32(metric.Value);

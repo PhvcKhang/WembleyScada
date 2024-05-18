@@ -7,4 +7,5 @@ public class ShiftReportShortenDetailsQuery : IRequest<IEnumerable<ShiftReportDe
     public DateTime? Date { get; set; }
     public int? ShiftNumber { get; set; }
     public int Interval { get; set; }
+
 }
